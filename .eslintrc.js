@@ -21,7 +21,7 @@ module.exports = {
     'react/display-name': 'off',
     'react/jsx-curly-brace-presence': [
       'warn',
-      { props: 'never', children: 'never' },
+      {props: 'never', children: 'never'},
     ],
     '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'warn',
@@ -66,4 +66,4 @@ module.exports = {
     React: true,
     JSX: true,
   },
-};
+}

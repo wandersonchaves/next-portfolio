@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=portfolio
+      - POSTGRES_PASSWORD=portfolio
+      - POSTGRES_DB=portfolio
+    volumes:
+      - portfolio_pg_data:/bitnami/postgresql
+
+volumes:
+  portfolio_pg_data:

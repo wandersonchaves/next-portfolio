@@ -1,48 +1,48 @@
-import axios from 'axios';
-import { GetServerSideProps, NextPage } from 'next';
-import dynamic from 'next/dynamic';
-import { NextSeo } from 'next-seo';
-import { useEffect } from 'react';
+import axios from 'axios'
+import {GetServerSideProps, NextPage} from 'next'
+import dynamic from 'next/dynamic'
+import {NextSeo} from 'next-seo'
+import {useEffect} from 'react'
 
-import BackButton from '@/common/components/elements/BackButton';
-import Container from '@/common/components/elements/Container';
-import { formatExcerpt } from '@/common/helpers';
-import { BlogDetailProps } from '@/common/types/blog';
-import BlogDetail from '@/modules/blog/components/BlogDetail';
-import { getBlogDetail } from '@/services/blog';
+import BackButton from '@/common/components/elements/BackButton'
+import Container from '@/common/components/elements/Container'
+import {formatExcerpt} from '@/common/helpers'
+import {BlogDetailProps} from '@/common/types/blog'
+import BlogDetail from '@/modules/blog/components/BlogDetail'
+import {getBlogDetail} from '@/services/blog'
 
 const GiscusComment = dynamic(
   () => import('@/modules/blog/components/GiscusComment'),
-);
+)
 
 interface BlogDetailPageProps {
   blog: {
-    data: BlogDetailProps;
-  };
+    data: BlogDetailProps
+  }
 }
 
-const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
-  const blogData = blog?.data || {};
+const BlogDetailPage: NextPage<BlogDetailPageProps> = ({blog}) => {
+  const blogData = blog?.data || {}
 
-  const slug = `blog/${blogData?.slug}?id=${blogData?.id}`;
-  const canonicalUrl = `https://aulianza.id/${slug}`;
-  const description = formatExcerpt(blogData?.excerpt?.rendered);
+  const slug = `blog/${blogData?.slug}?id=${blogData?.id}`
+  const canonicalUrl = `https://wanderson.id/${slug}`
+  const description = formatExcerpt(blogData?.excerpt?.rendered)
 
   const incrementViews = async () => {
-    await axios.post(`/api/views?&slug=${blogData?.slug}`);
-  };
+    await axios.post(`/api/views?&slug=${blogData?.slug}`)
+  }
 
   useEffect(() => {
     if (process.env.NODE_ENV === 'production') {
-      incrementViews();
+      incrementViews()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <>
       <NextSeo
-        title={`${blogData?.title?.rendered} - Blog Ryan Aulia`}
+        title={`${blogData?.title?.rendered} - Blog Wanderson Chaves`}
         description={description}
         canonical={canonicalUrl}
         openGraph={{
@@ -50,7 +50,7 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
           article: {
             publishedTime: blogData?.date,
             modifiedTime: blogData?.date,
-            authors: ['Ryan Aulia', 'aulianza'],
+            authors: ['Wanderson Chaves', 'chav3x'],
           },
           url: canonicalUrl,
           images: [
@@ -58,24 +58,24 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
               url: blogData?.featured_image_url,
             },
           ],
-          siteName: 'aulianza blog',
+          siteName: 'chav3x blog',
         }}
       />
-      <Container data-aos='fade-up'>
-        <BackButton url='/blog' />
+      <Container data-aos="fade-up">
+        <BackButton url="/blog" />
         <BlogDetail {...blogData} />
-        <section id='comments'>
+        <section id="comments">
           <GiscusComment isEnableReaction={false} />
         </section>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default BlogDetailPage;
+export default BlogDetailPage
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const blogId = context.query?.id as string;
+  const blogId = context.query?.id as string
 
   if (!blogId) {
     return {
@@ -83,10 +83,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         destination: '/',
         permanent: false,
       },
-    };
+    }
   }
 
-  const response = await getBlogDetail(parseInt(blogId));
+  const response = await getBlogDetail(parseInt(blogId))
 
   if (response?.status === 404) {
     return {
@@ -94,12 +94,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         destination: '/404',
         permanent: false,
       },
-    };
+    }
   }
 
   return {
     props: {
       blog: response,
     },
-  };
-};
+  }
+}

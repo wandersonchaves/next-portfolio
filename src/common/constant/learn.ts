@@ -1,4 +1,4 @@
-import { ContentProps } from '../types/learn';
+import {ContentProps} from '../types/learn'
 
 export const LEARN_CONTENTS: ContentProps[] = [
   {
@@ -6,7 +6,7 @@ export const LEARN_CONTENTS: ContentProps[] = [
     title: 'JavasScript Fundamental',
     slug: 'js-fundamental',
     description: 'Master the fundamentals of programming in JavaScript.',
-    image: 'https://cloud.aulianza.com/public/images/learn/javascript.webp',
+    image: 'https://cloud.chav3x.com/public/images/learn/javascript.webp',
     is_new: true,
     level: 'Beginner',
     is_show: true,
@@ -18,9 +18,9 @@ export const LEARN_CONTENTS: ContentProps[] = [
     description:
       'Learn problem solving in JavaScript with detailed explanations.',
     image:
-      'https://cloud.aulianza.com/public/images/learn/learn-problem-solving.png',
+      'https://cloud.chav3x.com/public/images/learn/learn-problem-solving.png',
     is_new: false,
     level: 'All Levels',
     is_show: true,
   },
-];
+]

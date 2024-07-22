@@ -1,12 +1,12 @@
-import clsx from 'clsx';
-import { signOut, useSession } from 'next-auth/react';
-import { HiOutlineLogout as SignOutIcon } from 'react-icons/hi';
+import clsx from 'clsx'
+import {signOut, useSession} from 'next-auth/react'
+import {HiOutlineLogout as SignOutIcon} from 'react-icons/hi'
 
-const ChatUserInfo = ({ isWidget = false }: { isWidget?: boolean }) => {
-  const { data: session } = useSession();
+const ChatUserInfo = ({isWidget = false}: {isWidget?: boolean}) => {
+  const {data: session} = useSession()
 
-  const userName = session?.user?.name ?? null;
-  const userEmail = session?.user?.email ?? null;
+  const userName = session?.user?.name ?? null
+  const userEmail = session?.user?.email ?? null
 
   return session ? (
     <div
@@ -15,26 +15,29 @@ const ChatUserInfo = ({ isWidget = false }: { isWidget?: boolean }) => {
         isWidget && 'text-xs',
       )}
     >
-      <div className='flex flex-wrap gap-1 text-neutral-500'>
+      <div className="flex flex-wrap gap-1 text-neutral-500">
         <p>Signed in as</p>
-        <p className='font-medium'>{userName}</p>
+        <p className="font-medium">{userName}</p>
         <p>({userEmail})</p>
       </div>
       {!isWidget && (
         <>
-          <div className='hidden text-neutral-500 md:block'>•</div>
+          <div className="hidden text-neutral-500 md:block">•</div>
           <div
             onClick={() => signOut()}
-            className='flex cursor-pointer items-center gap-1 font-medium text-red-500'
-            data-umami-event='Sign Out from Chat Page'
+            className="flex cursor-pointer items-center gap-1 font-medium text-red-500"
+            data-umami-event="Sign Out from Chat Page"
           >
-            <SignOutIcon size={16} className='cursor-pointer text-red-500' />
+            <SignOutIcon
+              size={16}
+              className="cursor-pointer text-red-500"
+            />
             <span>Sign Out</span>
           </div>
         </>
       )}
     </div>
-  ) : null;
-};
+  ) : null
+}
 
-export default ChatUserInfo;
+export default ChatUserInfo

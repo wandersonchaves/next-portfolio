@@ -1,14 +1,14 @@
-import { BiLeftArrowCircle as BackButton } from 'react-icons/bi';
-import Typewriter from 'typewriter-effect';
+import {BiLeftArrowCircle as BackButton} from 'react-icons/bi'
+import Typewriter from 'typewriter-effect'
 
-import Button from '@/common/components/elements/Button';
-import MDXComponent from '@/common/components/elements/MDXComponent';
+import Button from '@/common/components/elements/Button'
+import MDXComponent from '@/common/components/elements/MDXComponent'
 
 interface AiResponsesProps {
-  response: string;
-  isAiFinished: boolean;
-  onAiFinished: () => void;
-  onAiClose: () => void;
+  response: string
+  isAiFinished: boolean
+  onAiFinished: () => void
+  onAiClose: () => void
 }
 
 const AiResponses = ({
@@ -28,9 +28,9 @@ const AiResponses = ({
               typewriter
                 .typeString(response)
                 .callFunction(() => {
-                  onAiFinished();
+                  onAiFinished()
                 })
-                .start();
+                .start()
             }}
             options={{
               delay: 10,
@@ -53,9 +53,9 @@ const AiResponses = ({
               .typeString('<br/><br/>')
               .typeString('Please try again later. \u00A0')
               .callFunction(() => {
-                onAiFinished();
+                onAiFinished()
               })
-              .start();
+              .start()
           }}
           options={{
             delay: 10,
@@ -64,10 +64,10 @@ const AiResponses = ({
       )}
 
       {isAiFinished && (
-        <div className='mt-6 flex justify-center transition-all duration-300'>
+        <div className="mt-6 flex justify-center transition-all duration-300">
           <Button
             onClick={onAiClose}
-            data-umami-event='Click Back from AI Response'
+            data-umami-event="Click Back from AI Response"
           >
             <BackButton />
             Back
@@ -75,7 +75,7 @@ const AiResponses = ({
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default AiResponses;
+export default AiResponses

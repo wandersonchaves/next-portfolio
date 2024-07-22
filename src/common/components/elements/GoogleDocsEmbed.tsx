@@ -1,7 +1,7 @@
 interface GoogleDocsEmbedProps {
-  src: string;
-  width?: string;
-  height?: string;
+  src: string
+  width?: string
+  height?: string
 }
 
 const GoogleDocsEmbed: React.FC<GoogleDocsEmbedProps> = ({
@@ -12,21 +12,21 @@ const GoogleDocsEmbed: React.FC<GoogleDocsEmbedProps> = ({
   return (
     <iframe
       src={`https://docs.google.com/document/d/${getDocIdFromUrl(src)}/preview`}
-      title='Google Docs Viewer'
+      title="Google Docs Viewer"
       width={width}
       height={height}
-      frameBorder='0'
-      scrolling='no'
+      frameBorder="0"
+      scrolling="no"
     >
       This browser does not support embedding Google Docs. Please use a
       compatible browser.
     </iframe>
-  );
-};
+  )
+}
 
 const getDocIdFromUrl = (url: string): string => {
-  const match = url.match(/\/d\/(.*?)\/(edit|preview)/);
-  return match ? match[1] : '';
-};
+  const match = url.match(/\/d\/(.*?)\/(edit|preview)/)
+  return match ? match[1] : ''
+}
 
-export default GoogleDocsEmbed;
+export default GoogleDocsEmbed

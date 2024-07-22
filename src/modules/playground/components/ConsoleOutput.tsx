@@ -1,9 +1,9 @@
-import clsx from 'clsx';
+import clsx from 'clsx'
 
 interface ConsoleOutputProps {
-  output: string;
-  isError: boolean;
-  isFullScreen?: boolean;
+  output: string
+  isError: boolean
+  isFullScreen?: boolean
 }
 
 const ConsoleOutput = ({
@@ -21,12 +21,12 @@ const ConsoleOutput = ({
     >
       <code
         className={clsx('text-sm')}
-        style={{ whiteSpace: 'pre-wrap', overflowWrap: 'break-word' }}
+        style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}
       >
         {output}
       </code>
     </div>
-  );
-};
+  )
+}
 
-export default ConsoleOutput;
+export default ConsoleOutput

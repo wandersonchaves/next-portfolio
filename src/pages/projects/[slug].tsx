@@ -1,27 +1,27 @@
-import { GetServerSideProps, NextPage } from 'next';
-import { NextSeo } from 'next-seo';
+import {GetServerSideProps, NextPage} from 'next'
+import {NextSeo} from 'next-seo'
 
-import BackButton from '@/common/components/elements/BackButton';
-import Container from '@/common/components/elements/Container';
-import PageHeading from '@/common/components/elements/PageHeading';
-import prisma from '@/common/libs/prisma';
-import { ProjectItemProps } from '@/common/types/projects';
-import ProjectDetail from '@/modules/projects/components/ProjectDetail';
+import BackButton from '@/common/components/elements/BackButton'
+import Container from '@/common/components/elements/Container'
+import PageHeading from '@/common/components/elements/PageHeading'
+import prisma from '@/common/libs/prisma'
+import {ProjectItemProps} from '@/common/types/projects'
+import ProjectDetail from '@/modules/projects/components/ProjectDetail'
 
 interface ProjectsDetailPageProps {
-  project: ProjectItemProps;
+  project: ProjectItemProps
 }
 
-const ProjectsDetailPage: NextPage<ProjectsDetailPageProps> = ({ project }) => {
-  const PAGE_TITLE = project?.title;
-  const PAGE_DESCRIPTION = project?.description;
+const ProjectsDetailPage: NextPage<ProjectsDetailPageProps> = ({project}) => {
+  const PAGE_TITLE = project?.title
+  const PAGE_DESCRIPTION = project?.description
 
-  const canonicalUrl = `https://aulianza.id/project/${project?.slug}`;
+  const canonicalUrl = `https://wanderson.id/project/${project?.slug}`
 
   return (
     <>
       <NextSeo
-        title={`${project?.title} - Project Ryan Aulia`}
+        title={`${project?.title} - Project Wanderson Chaves`}
         description={project?.description}
         canonical={canonicalUrl}
         openGraph={{
@@ -29,7 +29,7 @@ const ProjectsDetailPage: NextPage<ProjectsDetailPageProps> = ({ project }) => {
           article: {
             publishedTime: project?.updated_at.toString(),
             modifiedTime: project?.updated_at.toString(),
-            authors: ['Ryan Aulia'],
+            authors: ['Wanderson Chaves'],
           },
           url: canonicalUrl,
           images: [
@@ -37,26 +37,29 @@ const ProjectsDetailPage: NextPage<ProjectsDetailPageProps> = ({ project }) => {
               url: project?.image,
             },
           ],
-          siteName: 'Blog Ryan Aulia',
+          siteName: 'Blog Wanderson Chaves',
         }}
       />
-      <Container data-aos='fade-up'>
-        <BackButton url='/projects' />
-        <PageHeading title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+      <Container data-aos="fade-up">
+        <BackButton url="/projects" />
+        <PageHeading
+          title={PAGE_TITLE}
+          description={PAGE_DESCRIPTION}
+        />
         <ProjectDetail {...project} />
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default ProjectsDetailPage;
+export default ProjectsDetailPage
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({params}) => {
   const response = await prisma.projects.findUnique({
     where: {
       slug: String(params?.slug),
     },
-  });
+  })
 
   if (response === null) {
     return {
@@ -64,15 +67,15 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
         destination: '/404',
         permanent: false,
       },
-    };
+    }
   }
 
   return {
     props: {
       project: JSON.parse(JSON.stringify(response)),
     },
-  };
-};
+  }
+}
 
 // RY: moved from SSG to SSR since data updated frequently from DB
 // export const getStaticProps: GetStaticProps = async ({ params }) => {

@@ -17,19 +17,19 @@ module.exports = {
       },
       keyframes: {
         wave: {
-          '0%': { transform: 'rotate(0.0deg)' },
-          '10%': { transform: 'rotate(14deg)' },
-          '20%': { transform: 'rotate(-8deg)' },
-          '30%': { transform: 'rotate(14deg)' },
-          '40%': { transform: 'rotate(-4deg)' },
-          '50%': { transform: 'rotate(10.0deg)' },
-          '60%': { transform: 'rotate(0.0deg)' },
-          '100%': { transform: 'rotate(0.0deg)' },
+          '0%': {transform: 'rotate(0.0deg)'},
+          '10%': {transform: 'rotate(14deg)'},
+          '20%': {transform: 'rotate(-8deg)'},
+          '30%': {transform: 'rotate(14deg)'},
+          '40%': {transform: 'rotate(-4deg)'},
+          '50%': {transform: 'rotate(10.0deg)'},
+          '60%': {transform: 'rotate(0.0deg)'},
+          '100%': {transform: 'rotate(0.0deg)'},
         },
         flying: {
-          '0%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(0.5rem)' },
-          '100%': { transform: 'translateY(0)' },
+          '0%': {transform: 'translateY(0)'},
+          '50%': {transform: 'translateY(0.5rem)'},
+          '100%': {transform: 'translateY(0)'},
         },
         badge: {
           '100%': {
@@ -38,8 +38,8 @@ module.exports = {
           },
         },
         loop: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
+          '0%': {transform: 'translateX(0)'},
+          '100%': {transform: 'translateX(-50%)'},
         },
       },
       animation: {
@@ -51,4 +51,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwind-scrollbar-hide')],
-};
+}

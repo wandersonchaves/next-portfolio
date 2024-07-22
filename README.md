@@ -1,17 +1,17 @@
 <div align="center">
-  <h1>aulianza.id</h1>
+  <h1>wanderson.id</h1>
   <p>🔥 Personal website was built originally from scratch using Next.js, TypeScript, Tailwind CSS, SWR, Firebase and Prisma with PostgreSQL</p>
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/aulianza/aulianza.id)](https://github.com/aulianza/aulianza.id/stargazers)
+[![GitHub Repo stars](https://img.shields.io/github/stars/chav3x/wanderson.id)](https://github.com/chav3x/wanderson.id/stargazers)
 [![Depfu](https://badges.depfu.com/badges/02483ebb21fdb2182a66a28b68d1b7b0/status.svg)](https://depfu.com)
-[![Depfu](https://badges.depfu.com/badges/02483ebb21fdb2182a66a28b68d1b7b0/overview.svg)](https://depfu.com/github/aulianza/aulianza.id?project_id=38809)
-[![Depfu](https://badges.depfu.com/badges/02483ebb21fdb2182a66a28b68d1b7b0/count.svg)](https://depfu.com/github/aulianza/aulianza.id?project_id=38809)
+[![Depfu](https://badges.depfu.com/badges/02483ebb21fdb2182a66a28b68d1b7b0/overview.svg)](https://depfu.com/github/chav3x/wanderson.id?project_id=38809)
+[![Depfu](https://badges.depfu.com/badges/02483ebb21fdb2182a66a28b68d1b7b0/count.svg)](https://depfu.com/github/chav3x/wanderson.id?project_id=38809)
 [![Last Update](https://img.shields.io/badge/deps%20update-every%20sunday-blue.svg)](https://shields.io/)
 
 </div>
 <br />
 
-<img width="1359" alt="image" src="https://github.com/aulianza/aulianza.id/assets/15605885/e9665038-6e84-4c8e-a847-fb90138c0303">
+<img width="1359" alt="image" src="https://github.com/chav3x/wanderson.id/assets/15605885/e9665038-6e84-4c8e-a847-fb90138c0303">
 
 ## Introduction
 
@@ -86,15 +86,15 @@ The data projects on this blog are taken from the PostgreSQL database connected 
 
 - ### PageSpeed Insights
 
-Report URL: https://pagespeed.web.dev/analysis/https-aulianza-id/pk0y6xcz25?form_factor=desktop
+Report URL: https://pagespeed.web.dev/analysis/https-chav3x-id/pk0y6xcz25?form_factor=desktop
 
-![image](https://github.com/aulianza/aulianza.id/assets/15605885/d87a6083-caf3-4b84-ba59-975c07193a9f)
+![image](https://github.com/chav3x/wanderson.id/assets/15605885/d87a6083-caf3-4b84-ba59-975c07193a9f)
 
 - ### GTmetrix
 
-Report URL: [https://pagespeed.web.dev/analysis/https-aulianza-id/pk0y6xcz25?form_factor=desktop](https://gtmetrix.com/reports/aulianza.id/REEiduoo/)
+Report URL: [https://pagespeed.web.dev/analysis/https-chav3x-id/pk0y6xcz25?form_factor=desktop](https://gtmetrix.com/reports/wanderson.id/REEiduoo/)
 
-![image](https://github.com/aulianza/aulianza.id/assets/15605885/953dc131-bf52-4ef6-913c-f6eb8fb6c6a7)
+![image](https://github.com/chav3x/wanderson.id/assets/15605885/953dc131-bf52-4ef6-913c-f6eb8fb6c6a7)
 <br /><br />
 
 ## Getting Started
@@ -106,25 +106,25 @@ If you are interested in running this project on your local machine, you can do 
 1. Clone using git
 
    ```bash
-   git clone https://github.com/aulianza/aulianza.id
+   git clone https://github.com/chav3x/wanderson.id
    ```
 
 2. Using `create-next-app`
 
    ```bash
-   npx create-next-app -e https://github.com/aulianza/aulianza.id project-name
+   npx create-next-app -e https://github.com/chav3x/wanderson.id project-name
    ```
 
 3. Using `degit`
 
    ```bash
-   npx degit aulianza/aulianza.id YOUR_APP_NAME
+   npx degit chav3x/wanderson.id YOUR_APP_NAME
    ```
 
 4. Deploy to Vercel or Netlify, etc
 
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/aulianza/aulianza.id)
-   [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/aulianza/aulianza.id)
+   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/chav3x/wanderson.id)
+   [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/chav3x/wanderson.id)
 
 ### 2. Install dependencies
 
@@ -140,7 +140,7 @@ This repository uses several environment variables. Please copy .env.example int
 
 ```
 BUNDLE_ANALYZER=false
-SITE_URL=https://aulianza.id
+SITE_URL=https://wanderson.id
 
 # Blog
 BLOG_API_URL=
@@ -199,4 +199,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## License
 
-Licensed under the [GPL-3.0 license](https://github.com/aulianza/aulianza.id/blob/master/LICENSE).
+Licensed under the [GPL-3.0 license](https://github.com/chav3x/wanderson.id/blob/master/LICENSE).

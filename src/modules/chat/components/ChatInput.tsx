@@ -1,73 +1,73 @@
-import clsx from 'clsx';
-import { ChangeEvent, FormEvent, useRef, useState } from 'react';
-import { FiSend as SendIcon } from 'react-icons/fi';
+import clsx from 'clsx'
+import {ChangeEvent, FormEvent, useRef, useState} from 'react'
+import {FiSend as SendIcon} from 'react-icons/fi'
 
-import { ChatInputProps } from '@/common/types/chat';
+import {ChatInputProps} from '@/common/types/chat'
 
-import ChatUserInfo from './ChatUserInfo';
+import ChatUserInfo from './ChatUserInfo'
 
 const ChatInput = ({
   onSendMessage,
   isWidget,
-}: ChatInputProps & { isWidget?: boolean }) => {
-  const [message, setMessage] = useState('');
-  const [isSending, setIsSending] = useState(false);
+}: ChatInputProps & {isWidget?: boolean}) => {
+  const [message, setMessage] = useState('')
+  const [isSending, setIsSending] = useState(false)
 
-  const inputRef = useRef<HTMLInputElement | null>(null);
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const handleSendMessage = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    if (isSending) return;
+    if (isSending) return
 
-    setIsSending(true);
+    setIsSending(true)
 
     try {
-      await onSendMessage(message);
-      setMessage('');
+      await onSendMessage(message)
+      setMessage('')
     } catch (error) {
       // console.error('Error sending message:', error);
     } finally {
-      setIsSending(false);
+      setIsSending(false)
       setTimeout(() => {
-        inputRef.current?.focus();
-      }, 0);
+        inputRef.current?.focus()
+      }, 0)
     }
-  };
+  }
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  };
+    setMessage(e.target.value)
+  }
 
   return (
     <>
-      <form className='flex items-center gap-x-1 border-t border-neutral-300 p-4 pb-3 dark:border-neutral-800'>
+      <form className="flex items-center gap-x-1 border-t border-neutral-300 p-4 pb-3 dark:border-neutral-800">
         <input
-          type='text'
+          type="text"
           value={message}
           onChange={handleChange}
-          placeholder='Type a message...'
-          className='flex-grow rounded-md border p-2 focus:outline-none dark:border-neutral-600'
+          placeholder="Type a message..."
+          className="flex-grow rounded-md border p-2 focus:outline-none dark:border-neutral-600"
           disabled={isSending}
           ref={inputRef}
           autoFocus
         />
         <button
-          type='submit'
+          type="submit"
           onClick={handleSendMessage}
           className={clsx(
             'ml-2 rounded-md bg-sky-600 p-3 text-white',
             !message.trim() && 'cursor-not-allowed !bg-neutral-600',
           )}
           disabled={isSending || !message.trim()}
-          data-umami-event='Chat Widget: Send Chat'
+          data-umami-event="Chat Widget: Send Chat"
         >
           <SendIcon size={18} />
         </button>
       </form>
       <ChatUserInfo isWidget={isWidget} />
     </>
-  );
-};
+  )
+}
 
-export default ChatInput;
+export default ChatInput
