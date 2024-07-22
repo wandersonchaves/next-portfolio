@@ -13,7 +13,7 @@ const editorConfig = {
   minimap: {
     enabled: false,
   },
-  wordWrap: 'on',
+  wordWrap: 'on' as const, // Cast the string to the correct type
   scrollbar: {
     verticalScrollbarSize: 9,
   },
