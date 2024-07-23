@@ -38,10 +38,18 @@ const App = ({Component, pageProps: {session, ...pageProps}}: AppProps) => {
       >
         {`
           html {
-            --jakartaSans-font: ${jakartaSans.style.fontFamily};
-            --soraSans-font: ${soraSans.style.fontFamily};
-            --firaCode-font: ${firaCode.style.fontFamily};
-            --onestSans-font: ${onestSans.style.fontFamily};
+            --jakartaSans-font: ${jakartaSans
+              ? jakartaSans.style.fontFamily
+              : 'sans-serif'};
+            --soraSans-font: ${soraSans
+              ? soraSans.style.fontFamily
+              : 'sans-serif'};
+            --firaCode-font: ${firaCode
+              ? firaCode.style.fontFamily
+              : 'monospace'};
+            --onestSans-font: ${onestSans
+              ? onestSans.style.fontFamily
+              : 'sans-serif'};
           }
         `}
       </style>
