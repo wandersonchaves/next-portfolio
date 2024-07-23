@@ -23,10 +23,10 @@ const ChatInput = ({
     setIsSending(true)
 
     try {
-      await onSendMessage(message)
+      onSendMessage(message)
       setMessage('')
     } catch (error) {
-      // console.error('Error sending message:', error);
+      // console.error('Error sending message:', error)
     } finally {
       setIsSending(false)
       setTimeout(() => {

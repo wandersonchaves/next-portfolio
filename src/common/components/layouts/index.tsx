@@ -12,8 +12,6 @@ import HeaderTop from './header/HeaderTop'
 import NowPlayingBar from '../elements/NowPlayingBar'
 import NowPlayingCard from '../elements/NowPlayingCard'
 
-// import TopBar from '../elements/TopBar';
-
 interface LayoutProps {
   children: ReactNode
 }

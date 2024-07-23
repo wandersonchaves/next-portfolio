@@ -14,9 +14,29 @@ const ProjectCard = ({
   description,
   image,
   stacks,
-  is_featured,
+  is_featured = false,
 }: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks)
+  let stacksArray: string[] = []
+
+  if (typeof stacks === 'string' && stacks.trim() !== '') {
+    try {
+      stacksArray = JSON.parse(stacks)
+
+      if (!Array.isArray(stacksArray)) {
+        throw new Error('Parsed stacks is not an array.')
+      }
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error occurred'
+      return <p>Error: Failed to parse stacks JSON: {errorMessage}</p>
+    }
+  } else {
+    return (
+      <p>
+        Error: Expected a non-empty string for stacks but received: {stacks}
+      </p>
+    )
+  }
 
   return (
     <Link href={`/projects/${slug}`}>

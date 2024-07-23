@@ -13,11 +13,14 @@ import ChatList from './ChatList'
 
 const Chat = ({isWidget = false}: {isWidget?: boolean}) => {
   const {data: session} = useSession()
-
   const [messages, setMessages] = useState<MessageProps[]>([])
 
   const database = getDatabase(firebase)
   const databaseChat = process.env.NEXT_PUBLIC_FIREBASE_CHAT_DB as string
+
+  if (!databaseChat || databaseChat.trim() === '') {
+    throw new Error('Invalid Firebase database path')
+  }
 
   const handleSendMessage = (message: string) => {
     const messageId = uuidv4()
@@ -44,19 +47,21 @@ const Chat = ({isWidget = false}: {isWidget?: boolean}) => {
 
   useEffect(() => {
     const messagesRef = ref(database, databaseChat)
-    onValue(messagesRef, (snapshot) => {
+    const unsubscribe = onValue(messagesRef, (snapshot) => {
       const messagesData = snapshot.val()
       if (messagesData) {
         const messagesArray = Object.values(messagesData) as MessageProps[]
-        const sortedMessage = messagesArray.sort((a, b) => {
+        const sortedMessages = messagesArray.sort((a, b) => {
           const dateA = new Date(a.created_at)
           const dateB = new Date(b.created_at)
           return dateA.getTime() - dateB.getTime()
         })
-        setMessages(sortedMessage)
+        setMessages(sortedMessages)
       }
     })
-  }, [database])
+
+    return () => unsubscribe()
+  }, [database, databaseChat])
 
   return (
     <>

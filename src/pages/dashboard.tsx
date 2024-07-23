@@ -34,13 +34,11 @@ const DashboardPage: NextPage<DashboardPageProps> = ({fallback}) => {
 export default DashboardPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const readStats = await getReadStats();
   const githubUserPersonal = await getGithubUser('personal')
 
   return {
     props: {
       fallback: {
-        // '/api/read-stats': readStats.data,
         '/api/github?type=personal': githubUserPersonal?.data,
       },
     },
