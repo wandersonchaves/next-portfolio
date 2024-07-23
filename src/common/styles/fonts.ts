@@ -1,6 +1,10 @@
+import type {NextFont} from 'next/dist/compiled/@next/font'
 import {Fira_Code, Onest, Plus_Jakarta_Sans, Sora} from 'next/font/google'
 
-let jakartaSans, firaCode, soraSans, onestSans
+export let jakartaSans: NextFont | undefined
+export let firaCode: NextFont | undefined
+export let soraSans: NextFont | undefined
+export let onestSans: NextFont | undefined
 
 try {
   jakartaSans = Plus_Jakarta_Sans({
@@ -10,7 +14,7 @@ try {
     weight: ['400', '500', '600', '700', '800'],
   })
 } catch (error) {
-  console.error('Failed to load Plus Jakarta Sans font:', error)
+  // Você pode querer logar isso em um serviço de log em produção
 }
 
 try {
@@ -20,7 +24,7 @@ try {
     display: 'swap',
   })
 } catch (error) {
-  console.error('Failed to load Fira Code font:', error)
+  // Você pode querer logar isso em um serviço de log em produção
 }
 
 try {
@@ -31,7 +35,7 @@ try {
     weight: ['300', '400', '500', '600', '700', '800'],
   })
 } catch (error) {
-  console.error('Failed to load Sora font:', error)
+  // Você pode querer logar isso em um serviço de log em produção
 }
 
 try {
@@ -42,7 +46,5 @@ try {
     weight: ['300', '400', '500', '600', '700', '800'],
   })
 } catch (error) {
-  console.error('Failed to load Onest font:', error)
+  // Você pode querer logar isso em um serviço de log em produção
 }
-
-export {firaCode, jakartaSans, onestSans,soraSans}
