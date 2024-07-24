@@ -43,20 +43,35 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({projects}) => {
 export default ProjectsPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await prisma.projects.findMany({
-    orderBy: [
-      {
-        is_featured: 'desc',
-      },
-      {
-        updated_at: 'desc',
-      },
-    ],
-  })
+  let projects: ProjectItemProps[] = []
+
+  try {
+    projects = await prisma.projects
+      .findMany({
+        orderBy: [
+          {
+            is_featured: 'desc',
+          },
+          {
+            updated_at: 'desc',
+          },
+        ],
+      })
+      .then((response) =>
+        response.map((project) => ({
+          ...project,
+          link_demo: project.link_demo || undefined,
+          link_github: project.link_github || undefined,
+          content: project.content || undefined,
+        })),
+      )
+  } catch (error) {
+    // Log the error using a logging service or silently handle it
+  }
 
   return {
     props: {
-      projects: JSON.parse(JSON.stringify(response)),
+      projects: JSON.parse(JSON.stringify(projects)),
     },
     revalidate: 1,
   }

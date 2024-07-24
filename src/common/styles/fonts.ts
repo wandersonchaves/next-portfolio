@@ -1,6 +1,5 @@
 import {Fira_Code, Onest, Plus_Jakarta_Sans, Sora} from 'next/font/google'
 
-// Carregamento das fontes diretamente no escopo do módulo
 export const jakartaSans = Plus_Jakarta_Sans({
   variable: '--jakartaSans-font',
   subsets: ['latin'],
