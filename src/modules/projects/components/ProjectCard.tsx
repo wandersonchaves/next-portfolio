@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import {useMemo} from 'react'
 import {AiFillPushpin as PinIcon} from 'react-icons/ai'
 import {HiOutlineArrowSmRight as ViewIcon} from 'react-icons/hi'
 
@@ -14,29 +15,16 @@ const ProjectCard = ({
   description,
   image,
   stacks,
-  is_featured = false,
+  is_featured,
 }: ProjectItemProps) => {
-  let stacksArray: string[] = []
-
-  if (typeof stacks === 'string' && stacks.trim() !== '') {
+  const stacksArray = useMemo(() => {
     try {
-      stacksArray = JSON.parse(stacks)
-
-      if (!Array.isArray(stacksArray)) {
-        throw new Error('Parsed stacks is not an array.')
-      }
-    } catch (error: unknown) {
-      const errorMessage =
-        error instanceof Error ? error.message : 'Unknown error occurred'
-      return <p>Error: Failed to parse stacks JSON: {errorMessage}</p>
+      return JSON.parse(stacks)
+    } catch (error) {
+      console.error('Failed to parse stacks JSON:', error)
+      return [] // Use an empty array as fallback
     }
-  } else {
-    return (
-      <p>
-        Error: Expected a non-empty string for stacks but received: {stacks}
-      </p>
-    )
-  }
+  }, [stacks])
 
   return (
     <Link href={`/projects/${slug}`}>
@@ -70,7 +58,7 @@ const ProjectCard = ({
             {description}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            {stacksArray?.map((stack: string, index: number) => (
+            {stacksArray.map((stack: string, index: number) => (
               <div key={index}>
                 <Tooltip title={stack}>{STACKS[stack]}</Tooltip>
               </div>
