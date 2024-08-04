@@ -1,11 +1,4 @@
 export const GITHUB_ACCOUNTS = [
-  // {
-  //   username: 'wanderson-sirka',
-  //   token: process.env.GITHUB_READ_USER_TOKEN_WORK,
-  //   endpoint: '/api/github?type=work',
-  //   type: 'work',
-  //   is_active: true,
-  // },
   {
     username: 'chav3x',
     token: process.env.GITHUB_READ_USER_TOKEN_PERSONAL,
