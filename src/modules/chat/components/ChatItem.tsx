@@ -1,12 +1,10 @@
-import clsx from 'clsx'
-import Image from 'next/image'
-import {useSession} from 'next-auth/react'
-import {FiTrash2 as DeleteIcon} from 'react-icons/fi'
 import {MdAdminPanelSettings as AdminIcon} from 'react-icons/md'
-
-import {MessageProps} from '@/common/types/chat'
-
 import ChatTime from './ChatTime'
+import {FiTrash2 as DeleteIcon} from 'react-icons/fi'
+import Image from 'next/image'
+import {MessageProps} from '@/common/types/chat'
+import clsx from 'clsx'
+import {useSession} from 'next-auth/react'
 
 interface ChatItemProps extends MessageProps {
   onDelete: (id: string) => void
@@ -23,7 +21,7 @@ const ChatItem = ({
 }: ChatItemProps) => {
   const {data: session} = useSession()
 
-  const authorEmail = 'chav3x.dev@gmail.com'
+  const authorEmail = 'wandersonchavesbr14@gmail.com'
 
   const pattern = /@([^:]+):/g
   const modifiedMessage = message?.split(pattern).map((part, index) => {

@@ -1,4 +1,12 @@
-import {BiRocket as ContactIcon} from 'react-icons/bi'
+import {
+  FiPieChart as AnalyticsIcon,
+  FiRss as BlogIcon,
+  FiCpu as DashboardIcon,
+  FiPocket as HomeIcon,
+  FiBookOpen as LearnIcon,
+  FiUser as ProfileIcon,
+  FiCoffee as ProjectIcon,
+} from 'react-icons/fi'
 import {
   BsEnvelopeAtFill as EmailIcon,
   BsGithub as GithubIcon,
@@ -6,19 +14,11 @@ import {
   BsLinkedin as LinkedinIcon,
   BsTwitter as TwitterIcon,
 } from 'react-icons/bs'
-import {
-  FiBookOpen as LearnIcon,
-  FiCoffee as ProjectIcon,
-  FiCpu as DashboardIcon,
-  FiPieChart as AnalyticsIcon,
-  FiPocket as HomeIcon,
-  FiRss as BlogIcon,
-  FiUser as ProfileIcon,
-} from 'react-icons/fi'
-import {PiChatCircleDotsBold as ChatIcon} from 'react-icons/pi'
-import {SiJavascript} from 'react-icons/si'
 
+import {PiChatCircleDotsBold as ChatIcon} from 'react-icons/pi'
+import {BiRocket as ContactIcon} from 'react-icons/bi'
 import {MenuItemProps} from '../types/menu'
+import {SiJavascript} from 'react-icons/si'
 
 const iconSize = 20
 
@@ -112,7 +112,7 @@ export const MENU_APPS: MenuItemProps[] = [
 export const SOCIAL_MEDIA: MenuItemProps[] = [
   {
     title: 'Email',
-    href: 'mailto:chav3x.dev@gmail.com',
+    href: 'mailto:wandersonchavesbr14@gmail.com',
     icon: <EmailIcon size={iconSize} />,
     isShow: true,
     isExternal: true,
@@ -123,7 +123,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
 
   {
     title: 'Linkedin',
-    href: 'https://www.linkedin.com/in/chav3x/',
+    href: 'https://www.linkedin.com/in/wandersonchaves/',
     icon: <LinkedinIcon size={iconSize} />,
     isShow: true,
     isExternal: true,
@@ -133,7 +133,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
   },
   {
     title: 'Twitter',
-    href: 'https://twitter.com/chav3xa',
+    href: 'https://twitter.com/wandchavesbr',
     icon: <TwitterIcon size={iconSize} />,
     isShow: true,
     isExternal: true,
@@ -143,7 +143,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
   },
   {
     title: 'Instagram',
-    href: 'https://instagram.com/chav3x',
+    href: 'https://instagram.com/dev.wandersonchaves',
     icon: <InstagramIcon size={iconSize} />,
     isShow: true,
     isExternal: true,
@@ -153,7 +153,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
   },
   {
     title: 'Github',
-    href: 'https://github.com/chav3x',
+    href: 'https://github.com/wandersonchaves',
     icon: <GithubIcon size={iconSize} />,
     isShow: true,
     isExternal: true,

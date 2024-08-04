@@ -1,18 +1,17 @@
-import clsx from 'clsx'
-import Link from 'next/link'
-import {useRouter} from 'next/router'
-import {useContext, useState} from 'react'
-import {BiCommand as CommandIcon} from 'react-icons/bi'
-import {FiMenu as MenuIcon} from 'react-icons/fi'
 import {MdClose as CloseIcon, MdVerified as VerifiedIcon} from 'react-icons/md'
+import {useContext, useState} from 'react'
 
-import {MENU_ITEMS} from '@/common/constant/menu'
+import {BiCommand as CommandIcon} from 'react-icons/bi'
 import {CommandPaletteContext} from '@/common/context/CommandPaletteContext'
-
 import Image from '../../elements/Image'
+import Link from 'next/link'
+import {MENU_ITEMS} from '@/common/constant/menu'
+import {FiMenu as MenuIcon} from 'react-icons/fi'
+import Profile from '../../sidebar/Profile'
 import ThemeToggleButton from '../../elements/ThemeToggleButton'
 import Tooltip from '../../elements/Tooltip'
-import Profile from '../../sidebar/Profile'
+import clsx from 'clsx'
+import {useRouter} from 'next/router'
 
 const HeaderTop = () => {
   const {setIsOpen} = useContext(CommandPaletteContext)
