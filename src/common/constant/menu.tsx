@@ -1,12 +1,4 @@
-import {
-  FiPieChart as AnalyticsIcon,
-  FiRss as BlogIcon,
-  FiCpu as DashboardIcon,
-  FiPocket as HomeIcon,
-  FiBookOpen as LearnIcon,
-  FiUser as ProfileIcon,
-  FiCoffee as ProjectIcon,
-} from 'react-icons/fi'
+import {BiRocket as ContactIcon} from 'react-icons/bi'
 import {
   BsEnvelopeAtFill as EmailIcon,
   BsGithub as GithubIcon,
@@ -14,11 +6,19 @@ import {
   BsLinkedin as LinkedinIcon,
   BsTwitter as TwitterIcon,
 } from 'react-icons/bs'
-
+import {
+  FiBookOpen as LearnIcon,
+  FiCoffee as ProjectIcon,
+  FiCpu as DashboardIcon,
+  FiPieChart as AnalyticsIcon,
+  FiPocket as HomeIcon,
+  FiRss as BlogIcon,
+  FiUser as ProfileIcon,
+} from 'react-icons/fi'
 import {PiChatCircleDotsBold as ChatIcon} from 'react-icons/pi'
-import {BiRocket as ContactIcon} from 'react-icons/bi'
-import {MenuItemProps} from '../types/menu'
 import {SiJavascript} from 'react-icons/si'
+
+import {MenuItemProps} from '../types/menu'
 
 const iconSize = 20
 

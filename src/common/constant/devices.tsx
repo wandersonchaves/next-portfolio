@@ -21,7 +21,7 @@ export const PAIR_DEVICES: Record<string, DeviceInfoProps> = {
       />
     ),
     model: 'MacBook Pro M1',
-    id: 'chav3x-mac',
+    id: 'wandersonchaves-mac',
   },
   Smartphone: {
     icon: (
@@ -31,7 +31,7 @@ export const PAIR_DEVICES: Record<string, DeviceInfoProps> = {
       />
     ),
     model: 'iPhone 13 Pro',
-    id: 'chav3x-iphone',
+    id: 'wandersonchaves-iphone',
   },
   Tablet: {
     icon: (
@@ -41,7 +41,7 @@ export const PAIR_DEVICES: Record<string, DeviceInfoProps> = {
       />
     ),
     model: 'iPad Mini 6',
-    id: 'chav3x-ipad',
+    id: 'wandersonchaves-ipad',
   },
   Smartwatch: {
     icon: (
@@ -51,7 +51,7 @@ export const PAIR_DEVICES: Record<string, DeviceInfoProps> = {
       />
     ),
     model: 'Apple Watch Series 7',
-    id: 'chav3x-iwatch',
+    id: 'wandersonchaves-iwatch',
   },
   Speaker: {
     icon: (
@@ -61,7 +61,7 @@ export const PAIR_DEVICES: Record<string, DeviceInfoProps> = {
       />
     ),
     model: 'Sony',
-    id: 'chav3x-speaker',
+    id: 'wandersonchaves-speaker',
   },
   TV: {
     icon: (
@@ -71,6 +71,6 @@ export const PAIR_DEVICES: Record<string, DeviceInfoProps> = {
       />
     ),
     model: 'Android TV',
-    id: 'chav3x-tv',
+    id: 'wandersonchaves-tv',
   },
 }

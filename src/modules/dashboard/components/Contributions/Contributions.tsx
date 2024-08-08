@@ -1,11 +1,13 @@
-import Calendar from './Calendar'
-import {BsGithub as GithubIcon} from 'react-icons/bs'
 import Link from 'next/link'
-import Overview from './Overview'
+import {BsGithub as GithubIcon} from 'react-icons/bs'
+import useSWR from 'swr'
+
 import SectionHeading from '@/common/components/elements/SectionHeading'
 import SectionSubHeading from '@/common/components/elements/SectionSubHeading'
 import {fetcher} from '@/services/fetcher'
-import useSWR from 'swr'
+
+import Calendar from './Calendar'
+import Overview from './Overview'
 
 type ContributionsProps = {
   username: string

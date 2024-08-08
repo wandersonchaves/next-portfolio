@@ -7,12 +7,12 @@ const Copyright = () => {
       <span className="animate-pulse text-red-500">❤</span>
       <span>by</span>
       <a
-        href="https://github.com/NextTech-Solutions/portfolio"
+        href="https://github.com/nexttech-solutions/wandersonchaves"
         target="_blank"
         rel="noopener noreferrer"
       >
         <span className="cursor-pointer hover:dark:text-neutral-400">
-          chav3x
+          wandersonchaves
         </span>
       </a>
     </div>

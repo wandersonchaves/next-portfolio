@@ -24,7 +24,7 @@ module.exports = {
       {props: 'never', children: 'never'},
     ],
     '@typescript-eslint/no-unused-vars': 'off',
-    'unused-imports/no-unused-imports': 'warn',
+    'unused-imports/no-unused-imports': 'off',
     'unused-imports/no-unused-vars': [
       'warn',
       {

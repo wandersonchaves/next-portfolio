@@ -56,12 +56,16 @@ const CodePlayground = ({
   const handlePanelResize = () => {
     const panel = editorRef.current
     if (panel !== null) {
-      isMobile && panel.resize(50)
+      if (isMobile) {
+        panel.resize(50)
+      }
     }
   }
 
   useEffect(() => {
-    isMobile && handlePanelResize()
+    if (isMobile) {
+      handlePanelResize()
+    }
   }, [isMobile])
 
   return (

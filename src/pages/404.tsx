@@ -4,7 +4,7 @@ import {NextPage} from 'next'
 import Container from '@/common/components/elements/Container'
 
 const Custom404: NextPage = () => {
-  return (  
+  return (
     <Container
       className="flex h-full flex-col items-center justify-center space-y-5 py-40 md:py-20"
       data-aos="fade-up"

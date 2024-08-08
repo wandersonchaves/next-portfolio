@@ -1,7 +1,8 @@
-const canonicalUrl = 'https://wanderson.id'
-const metaImage = 'https://cloud.chav3x.com/public/images/chav3x-id.png'
+const canonicalUrl = 'https://wandersonchaves.vercel.app'
+const metaImage =
+  'https://cloud.wandersonchaves.com/public/images/wandersonchaves.png'
 const metaDescription =
-  'Seasoned Software Engineer especially in Frontend side, with a passion for creating pixel-perfect web experiences'
+  'Seasoned Software Engineer especially in Backend side, with a passion for creating pixel-perfect web experiences'
 
 const defaultSEOConfig = {
   defaultTitle: 'Wanderson Chaves - Personal Website',
@@ -15,24 +16,24 @@ const defaultSEOConfig = {
     images: [
       {
         url: metaImage,
-        alt: 'wanderson.id og-image',
+        alt: 'wandersonchaves og-image',
         width: 800,
         height: 600,
       },
       {
         url: metaImage,
-        alt: 'wanderson.id og-image',
+        alt: 'wandersonchaves og-image',
         width: 1200,
         height: 630,
       },
       {
         url: metaImage,
-        alt: 'wanderson.id og-image',
+        alt: 'wandersonchaves og-image',
         width: 1600,
         height: 900,
       },
     ],
-    site_name: 'wanderson.id',
+    site_name: 'wandersonchaves',
   },
   twitter: {
     handle: '@handle',

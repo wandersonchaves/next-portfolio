@@ -43,25 +43,21 @@ const ProjectsPage: NextPage<ProjectsPageProps> = ({projects}) => {
 export default ProjectsPage
 
 export const getStaticProps: GetStaticProps = async () => {
-  try {
-    const response = await prisma.projects.findMany({
-      orderBy: [{is_featured: 'desc'}, {updated_at: 'desc'}],
-    })
-
-    return {
-      props: {
-        projects: JSON.parse(JSON.stringify(response)),
+  const response = await prisma.projects.findMany({
+    orderBy: [
+      {
+        is_featured: 'desc',
       },
-      revalidate: 1,
-    }
-  } catch (error) {
-    console.error('Error fetching projects:', error)
-
-    return {
-      props: {
-        projects: [],
+      {
+        updated_at: 'desc',
       },
-      revalidate: 1,
-    }
+    ],
+  })
+
+  return {
+    props: {
+      projects: JSON.parse(JSON.stringify(response)),
+    },
+    revalidate: 1,
   }
 }

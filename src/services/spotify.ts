@@ -63,8 +63,8 @@ export const getAvailableDevices = async (): Promise<DeviceResponseProps> => {
     name: device.name,
     is_active: device.is_active,
     type: device.type,
-    model: PAIR_DEVICES[device?.type]?.model || 'Unknown Device',
-    id: PAIR_DEVICES[device?.type]?.id || 'chav3x-device',
+    model: PAIR_DEVICES[device?.type]?.model ?? 'Unknown Device',
+    id: PAIR_DEVICES[device?.type]?.id ?? 'wandersonchaves-device',
   }))
 
   return {

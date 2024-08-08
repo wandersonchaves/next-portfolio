@@ -96,7 +96,7 @@ const BlogCardNew = ({
             </div>
             <Breakline className="!border-neutral-700" />
             <div className="flex justify-between gap-4 px-0.5 text-neutral-400">
-              <Tooltip title="by chav3x">
+              <Tooltip title="by wandersonchaves">
                 <Image
                   src="https://github.com/wandersonchaves.png"
                   alt="Wanderson Chaves"

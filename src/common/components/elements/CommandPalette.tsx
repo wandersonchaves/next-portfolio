@@ -125,7 +125,9 @@ const CommandPalette = () => {
 
   const handleFindGoogle = () => {
     const url =
-      'https://www.google.com/search?q=' + queryDebounce + '&ref=wanderson.id'
+      'https://www.google.com/search?q=' +
+      queryDebounce +
+      '&ref=wandersonchaves'
     window.open(url, '_blank')
   }
 
@@ -269,7 +271,7 @@ const CommandPalette = () => {
                     >
                       {menu?.children?.map((child, index) => (
                         <Combobox.Option
-                          key={index.toString()}
+                          key={`${child.title}-${index.toString()}`}
                           value={child}
                         >
                           {({active}) => (
@@ -298,21 +300,19 @@ const CommandPalette = () => {
                                   {child?.title} {active}
                                 </span>
                               </div>
-                              <>
-                                {isActiveRoute(child?.href) ? (
-                                  <span className="animate-pulse  text-xs text-neutral-500">
-                                    You are here
-                                  </span>
-                                ) : (
-                                  <>
-                                    {child?.type && (
-                                      <div className="rounded-md border border-neutral-400 px-1.5 py-0.5  text-xs text-neutral-500 dark:border-neutral-500">
-                                        {child?.type}
-                                      </div>
-                                    )}
-                                  </>
-                                )}
-                              </>
+                              {isActiveRoute(child?.href) ? (
+                                <span className="animate-pulse  text-xs text-neutral-500">
+                                  You are here
+                                </span>
+                              ) : (
+                                <>
+                                  {child?.type && (
+                                    <div className="rounded-md border border-neutral-400 px-1.5 py-0.5  text-xs text-neutral-500 dark:border-neutral-500">
+                                      {child?.type}
+                                    </div>
+                                  )}
+                                </>
+                              )}
                             </div>
                           )}
                         </Combobox.Option>

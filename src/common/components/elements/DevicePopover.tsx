@@ -36,9 +36,9 @@ const DevicePopover = ({devices, isShow}: DevicePopoverProps) => {
     >
       <Popover.Panel className="absolute bottom-10 right-0 z-20 w-max">
         <div className="flex flex-col gap-5 overflow-hidden rounded-lg bg-neutral-100 px-6 py-5 shadow-lg ring-1 ring-black ring-opacity-5 dark:bg-neutral-800 dark:text-white">
-          {listDevices?.map((device, index) => (
+          {listDevices?.map((device) => (
             <div
-              key={index}
+              key={device.id}
               className="flex w-full items-center justify-between gap-3"
             >
               {device?.icon}

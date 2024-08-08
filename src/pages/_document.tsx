@@ -5,6 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <script
+          async
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id="e1cf8800-3347-4bca-9415-9678b8dedb58"

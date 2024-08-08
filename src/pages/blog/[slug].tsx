@@ -25,7 +25,7 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({blog}) => {
   const blogData = blog?.data || {}
 
   const slug = `blog/${blogData?.slug}?id=${blogData?.id}`
-  const canonicalUrl = `https://wanderson.id/${slug}`
+  const canonicalUrl = `https://wandersonchaves/${slug}`
   const description = formatExcerpt(blogData?.excerpt?.rendered)
 
   const incrementViews = async () => {
@@ -50,7 +50,7 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({blog}) => {
           article: {
             publishedTime: blogData?.date,
             modifiedTime: blogData?.date,
-            authors: ['Wanderson Chaves', 'chav3x'],
+            authors: ['Wanderson Chaves', 'wandersonchaves'],
           },
           url: canonicalUrl,
           images: [
@@ -58,7 +58,7 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({blog}) => {
               url: blogData?.featured_image_url,
             },
           ],
-          siteName: 'chav3x blog',
+          siteName: 'wandersonchaves blog',
         }}
       />
       <Container data-aos="fade-up">

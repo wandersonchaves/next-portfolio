@@ -1,10 +1,12 @@
-import {MdAdminPanelSettings as AdminIcon} from 'react-icons/md'
-import ChatTime from './ChatTime'
-import {FiTrash2 as DeleteIcon} from 'react-icons/fi'
-import Image from 'next/image'
-import {MessageProps} from '@/common/types/chat'
 import clsx from 'clsx'
+import Image from 'next/image'
 import {useSession} from 'next-auth/react'
+import {FiTrash2 as DeleteIcon} from 'react-icons/fi'
+import {MdAdminPanelSettings as AdminIcon} from 'react-icons/md'
+
+import {MessageProps} from '@/common/types/chat'
+
+import ChatTime from './ChatTime'
 
 interface ChatItemProps extends MessageProps {
   onDelete: (id: string) => void

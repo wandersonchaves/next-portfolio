@@ -1,2 +1,1 @@
-export const CLIENT_IMAGES = [
-]
+export const CLIENT_IMAGES = []

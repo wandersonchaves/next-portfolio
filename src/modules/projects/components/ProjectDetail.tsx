@@ -1,26 +1,20 @@
-import type {FC} from 'react'
 import Image from '@/common/components/elements/Image'
 import MDXComponent from '@/common/components/elements/MDXComponent'
-import {ProjectItemProps} from '@/common/types/projects'
-import ProjectLink from './ProjectLink'
-import {STACKS} from '@/common/constant/stacks'
 import Tooltip from '@/common/components/elements/Tooltip'
+import {STACKS} from '@/common/constant/stacks'
+import {ProjectItemProps} from '@/common/types/projects'
 
-const ProjectDetail: FC<ProjectItemProps> = ({
+import ProjectLink from './ProjectLink'
+
+const ProjectDetail = ({
   title,
   image,
   stacks,
   link_demo,
   link_github,
   content,
-}) => {
-  let stacksArray: string[] = []
-
-  try {
-    stacksArray = JSON.parse(stacks)
-  } catch (error) {
-    console.error('Failed to parse stacks:', error)
-  }
+}: ProjectItemProps) => {
+  const stacksArray = JSON.parse(stacks)
 
   return (
     <div className="space-y-8">

@@ -11,7 +11,7 @@ const GiscusComment = ({isEnableReaction = false}: GiscusComment) => {
   return (
     <div className="mb-2 mt-5">
       <Giscus
-        repo="chav3x/wanderson.id"
+        repo="nexttech-solutions/wandersonchaves"
         repoId="R_kgDOJoIhfQ"
         category="General"
         categoryId="DIC_kwDOJoIhfc4CW6cJ"

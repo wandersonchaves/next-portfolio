@@ -72,7 +72,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
   const parentContent = params?.content as string
   const slug = params?.slug as string
 
-  const contentList = await loadMdxFiles(parentContent)
+  const contentList = loadMdxFiles(parentContent)
 
   const contentData = contentList.find((item) => item.slug === slug)
 
