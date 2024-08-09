@@ -1,9 +1,8 @@
-/* eslint-disable unused-imports/no-unused-vars */
-import {ReactNode} from 'react'
 import ReactMarkdown from 'react-markdown'
+/* eslint-disable unused-imports/no-unused-vars */
+import {ReactNode, type ComponentType} from 'react'
+import dynamic from 'next/dynamic'
 import remarkGfm from 'remark-gfm'
-
-import CodeBlock from './CodeBlock'
 
 interface MarkdownRendererProps {
   children: string
@@ -18,6 +17,11 @@ const Table = ({children}: TableProps) => (
     <table className="table w-full">{children}</table>
   </div>
 )
+
+// Carregar o CodeBlock dinamicamente
+const CodeBlock: ComponentType<any> = dynamic(() => import('./CodeBlock'), {
+  ssr: false,
+})
 
 const MDXComponent = ({children}: MarkdownRendererProps) => {
   return (

@@ -1,32 +1,19 @@
-import dynamic from 'next/dynamic'
-import {useEffect, useState} from 'react'
 import {
   HiCheckCircle as CheckIcon,
   HiOutlineClipboardCopy as CopyIcon,
 } from 'react-icons/hi'
+import {useEffect, useState} from 'react'
+
 import {CodeProps} from 'react-markdown/lib/ast-to-react'
-import {PrismLight as SyntaxHighlighter} from 'react-syntax-highlighter'
+import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
 import diff from 'react-syntax-highlighter/dist/cjs/languages/prism/diff'
+import dynamic from 'next/dynamic'
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
+import {a11yDark as themeColor} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx'
 import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
-import {a11yDark as themeColor} from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import {useCopyToClipboard} from 'usehooks-ts'
-
-const languages = {
-  javascript: 'javascript',
-  typescript: 'typescript',
-  diff: 'diff',
-  tsx: 'tsx',
-  css: 'css',
-}
-
-SyntaxHighlighter.registerLanguage(languages.javascript, javascript)
-SyntaxHighlighter.registerLanguage(languages.typescript, typescript)
-SyntaxHighlighter.registerLanguage(languages.diff, diff)
-SyntaxHighlighter.registerLanguage(languages.tsx, tsx)
-SyntaxHighlighter.registerLanguage(languages.css, css)
 
 const CodeBlock = ({className = '', children, inline, ...props}: CodeProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
@@ -72,7 +59,6 @@ const CodeBlock = ({className = '', children, inline, ...props}: CodeProps) => {
               />
             )}
           </button>
-
           <SyntaxHighlighter
             {...props}
             style={themeColor}
@@ -82,7 +68,6 @@ const CodeBlock = ({className = '', children, inline, ...props}: CodeProps) => {
               borderRadius: '8px',
               paddingRight: '50px',
             }}
-            PreTag="div"
             language={match ? match[1] : 'javascript'}
             wrapLongLines={true}
           >

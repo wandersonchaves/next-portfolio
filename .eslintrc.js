@@ -13,7 +13,7 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    'no-unused-vars': 'off',
+    'no-unused-vars': 'error',
     'no-console': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/no-unescaped-entities': 'off',
@@ -25,15 +25,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'off',
-    'unused-imports/no-unused-vars': [
-      'warn',
-      {
-        vars: 'all',
-        varsIgnorePattern: '^_',
-        args: 'after-used',
-        argsIgnorePattern: '^_',
-      },
-    ],
+    'unused-imports/no-unused-vars': 'error',
     'simple-import-sort/exports': 'warn',
     'simple-import-sort/imports': [
       'warn',
