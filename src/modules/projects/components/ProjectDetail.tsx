@@ -1,3 +1,5 @@
+import type { FC } from 'react'
+
 import Image from '@/common/components/elements/Image'
 import MDXComponent from '@/common/components/elements/MDXComponent'
 import Tooltip from '@/common/components/elements/Tooltip'
@@ -6,15 +8,21 @@ import {ProjectItemProps} from '@/common/types/projects'
 
 import ProjectLink from './ProjectLink'
 
-const ProjectDetail = ({
+const ProjectDetail: FC<ProjectItemProps> = ({
   title,
   image,
   stacks,
   link_demo,
   link_github,
   content,
-}: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks)
+}) => {
+  let stacksArray: string[] = []
+
+  try {
+    stacksArray = JSON.parse(stacks)
+  } catch (error) {
+    console.error('Failed to parse stacks:', error)
+  }
 
   return (
     <div className="space-y-8">

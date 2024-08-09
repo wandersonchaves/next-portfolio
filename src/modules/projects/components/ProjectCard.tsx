@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import {useMemo} from 'react'
 import {AiFillPushpin as PinIcon} from 'react-icons/ai'
 import {HiOutlineArrowSmRight as ViewIcon} from 'react-icons/hi'
 
@@ -16,7 +17,14 @@ const ProjectCard = ({
   stacks,
   is_featured,
 }: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks)
+  const stacksArray = useMemo(() => {
+    try {
+      return JSON.parse(stacks)
+    } catch (error) {
+      console.error('Failed to parse stacks JSON:', error)
+      return [] // Use an empty array as fallback
+    }
+  }, [stacks])
 
   return (
     <Link href={`/projects/${slug}`}>
@@ -50,7 +58,7 @@ const ProjectCard = ({
             {description}
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
-            {stacksArray?.map((stack: string, index: number) => (
+            {stacksArray.map((stack: string, index: number) => (
               <div key={`${index}`}>
                 <Tooltip title={stack}>{STACKS[stack]}</Tooltip>
               </div>
