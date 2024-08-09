@@ -24,7 +24,9 @@ const NowPlayingCard = ({isExpand = false}: {isExpand?: boolean}) => {
     data?.artist.slice(0, 20) + (data?.artist?.length > 20 ? '...' : '')
 
   const handleOpenSongUrl = (url?: string) => {
-    url && window.open(url, '_blank')
+    if (url) {
+      window.open(url, '_blank')
+    }
   }
 
   const handleMusicToggle = () => setExpand(!expand)

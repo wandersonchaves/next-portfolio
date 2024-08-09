@@ -28,7 +28,9 @@ const NowPlayingBar = () => {
   const activeDevice = devicesData?.find((device) => device.is_active)
 
   const handleOpenSongUrl = (url?: string) => {
-    url && window.open(url, '_blank')
+    if (url) {
+      window.open(url, '_blank')
+    }
   }
 
   if (!playingData?.songUrl) return null
