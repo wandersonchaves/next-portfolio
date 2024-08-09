@@ -16,7 +16,8 @@ export const firaCode = Fira_Code({
 export const soraSans = Sora({
   variable: '--soraSans-font',
   subsets: ['latin'],
-  display: 'fallback',
+  display: 'swap',
+  adjustFontFallback: false,
   weight: ['300', '400', '500', '600', '700', '800'],
 })
 
