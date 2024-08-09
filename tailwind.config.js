@@ -1,4 +1,6 @@
-module.exports = {
+import scrollbarHide from 'tailwind-scrollbar-hide'
+
+const tailwindConfig = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
@@ -50,5 +52,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwind-scrollbar-hide')],
+  plugins: [scrollbarHide],
 }
+
+export default tailwindConfig

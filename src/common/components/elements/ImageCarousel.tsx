@@ -82,7 +82,7 @@ const ImageCarousel = ({images, interval = 3000}: ImageCarouselProps) => {
       className="pt-5"
     >
       {images?.map((image, index) => (
-        <div key={index}>
+        <div key={`${index}`}>
           <Image
             src={image}
             alt={`Image ${index + 1}`}
