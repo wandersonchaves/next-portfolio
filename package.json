@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev && npx prisma studio -p 5555",
     "build": "next build",
     "postbuild": "next-sitemap",
-    "start": "next start",
+    "start": "next start && npx prisma studio -p 5555",
     "lint": "next lint",
     "lint:fix": "eslint src --fix && yarn format",
     "lint-staged": "lint-staged",
