@@ -1,23 +1,25 @@
+// src/common/components/elements/CodeBlock.tsx
+import {FC, useEffect, useState} from 'react'
 import {
   HiCheckCircle as CheckIcon,
   HiOutlineClipboardCopy as CopyIcon,
 } from 'react-icons/hi'
-import {useEffect, useState} from 'react'
-
 import {CodeProps} from 'react-markdown/lib/ast-to-react'
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
-import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css'
-import diff from 'react-syntax-highlighter/dist/cjs/languages/prism/diff'
-import dynamic from 'next/dynamic'
-import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript'
 import {a11yDark as themeColor} from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx'
-import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript'
 import {useCopyToClipboard} from 'usehooks-ts'
 
-const CodeBlock = ({className = '', children, inline, ...props}: CodeProps) => {
+export interface CodeBlockProps extends CodeProps {
+  inline?: boolean
+}
+
+const CodeBlock: FC<CodeBlockProps> = ({
+  className = '',
+  children,
+  inline,
+  ...props
+}) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
-  // eslint-disable unused-imports/no-unused-vars
   const [, copy] = useCopyToClipboard()
   const match = /language-(\w+)/.exec(className || '')
 
@@ -83,9 +85,4 @@ const CodeBlock = ({className = '', children, inline, ...props}: CodeProps) => {
   )
 }
 
-const LoadingPlaceholder = () => <div className="mb-12 mt-12 h-36 w-full" />
-
-export default dynamic(() => Promise.resolve(CodeBlock), {
-  ssr: false,
-  loading: LoadingPlaceholder,
-})
+export default CodeBlock

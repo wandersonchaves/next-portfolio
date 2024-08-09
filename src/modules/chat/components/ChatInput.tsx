@@ -1,9 +1,10 @@
+import clsx from 'clsx'
 import {ChangeEvent, FormEvent, useRef, useState} from 'react'
+import {FiSend as SendIcon} from 'react-icons/fi'
 
 import {ChatInputProps} from '@/common/types/chat'
+
 import ChatUserInfo from './ChatUserInfo'
-import {FiSend as SendIcon} from 'react-icons/fi'
-import clsx from 'clsx'
 
 const ChatInput = ({
   onSendMessage,
@@ -22,7 +23,7 @@ const ChatInput = ({
     setIsSending(true)
 
     try {
-      await onSendMessage(message)
+      onSendMessage(message)
       setMessage('')
     } catch (error) {
       // console.error('Error sending message:', error);

@@ -1,8 +1,10 @@
-import ReactMarkdown from 'react-markdown'
-/* eslint-disable unused-imports/no-unused-vars */
-import {ReactNode, type ComponentType} from 'react'
+// src/common/components/elements/MDXComponent.tsx
 import dynamic from 'next/dynamic'
+import {FC, ReactNode} from 'react'
+import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+
+import {CodeBlockProps} from './CodeBlock'
 
 interface MarkdownRendererProps {
   children: string
@@ -12,18 +14,21 @@ interface TableProps {
   children: ReactNode
 }
 
-const Table = ({children}: TableProps) => (
+const Table: FC<TableProps> = ({children}) => (
   <div className="table-container">
     <table className="table w-full">{children}</table>
   </div>
 )
 
-// Carregar o CodeBlock dinamicamente
-const CodeBlock: ComponentType<any> = dynamic(() => import('./CodeBlock'), {
-  ssr: false,
-})
+// Importar CodeBlock dinamicamente
+const CodeBlock = dynamic(
+  () => import('./CodeBlock').then((mod) => mod.default),
+  {
+    ssr: false,
+  },
+)
 
-const MDXComponent = ({children}: MarkdownRendererProps) => {
+const MDXComponent: FC<MarkdownRendererProps> = ({children}) => {
   return (
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -47,22 +52,22 @@ const MDXComponent = ({children}: MarkdownRendererProps) => {
             {...props}
           />
         ),
-        ul: ({ordered, ...props}) => (
+        ul: (props) => (
           <ul
             className="list-disc space-y-3 pb-2 pl-10"
             {...props}
           />
         ),
-        ol: ({ordered, ...props}) => (
+        ol: (props) => (
           <ol
             className="list-decimal space-y-3 pb-2 pl-10"
             {...props}
           />
         ),
-        code: (props) => <CodeBlock {...props} />,
+        code: (props) => <CodeBlock {...(props as CodeBlockProps)} />,
         blockquote: (props) => (
           <blockquote
-            className="rounded-br-2xl border-l-[5px] border-neutral-700 border-l-cyan-500 bg-neutral-200 py-3 pl-6  text-lg font-medium text-cyan-800 dark:bg-neutral-800 dark:text-cyan-200"
+            className="rounded-br-2xl border-l-[5px] border-neutral-700 border-l-cyan-500 bg-neutral-200 py-3 pl-6 text-lg font-medium text-cyan-800 dark:bg-neutral-800 dark:text-cyan-200"
             {...props}
           />
         ),
@@ -73,7 +78,7 @@ const MDXComponent = ({children}: MarkdownRendererProps) => {
           </th>
         ),
         td: (props) => (
-          <td className="border px-3  py-1 dark:border-neutral-600">
+          <td className="border px-3 py-1 dark:border-neutral-600">
             {props.children}
           </td>
         ),
