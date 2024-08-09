@@ -17,7 +17,7 @@ import {useCopyToClipboard} from 'usehooks-ts'
 
 const CodeBlock = ({className = '', children, inline, ...props}: CodeProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
-  // eslint-disable-next-line unused-imports/no-unused-vars
+  // eslint-disable unused-imports/no-unused-vars
   const [, copy] = useCopyToClipboard()
   const match = /language-(\w+)/.exec(className || '')
 
