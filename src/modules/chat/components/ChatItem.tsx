@@ -30,7 +30,7 @@ const ChatItem = ({
     if (index % 2 === 1) {
       return (
         <span
-          key={index}
+          key={`${index}`}
           className="text-yellow-600 dark:text-yellow-400"
         >
           @{part}

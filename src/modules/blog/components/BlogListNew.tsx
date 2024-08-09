@@ -138,7 +138,7 @@ const BlogListNew = () => {
           ) : (
             <>
               {new Array(3).fill(0).map((_, index) => (
-                <BlogCardNewSkeleton key={index} />
+                <BlogCardNewSkeleton key={`${index}`} />
               ))}
             </>
           )}

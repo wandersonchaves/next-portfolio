@@ -22,7 +22,7 @@ const ChapterCard = ({
   onToggle,
 }: ChapterCardProps) => {
   return (
-    <div
+    <button
       className={clsx(
         'mb-3 flex cursor-pointer select-none items-center justify-between rounded-t-xl px-5 py-3 text-white',
         'bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-teal-500 to-teal-600 dark:from-teal-900 dark:to-teal-950',
@@ -44,7 +44,7 @@ const ChapterCard = ({
           )}
         </div>
       </div>
-    </div>
+    </button>
   )
 }
 

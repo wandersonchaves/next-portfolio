@@ -17,7 +17,7 @@ const Menu = ({title, list}: MenuProps) => {
       )}
       {list?.map((item: MenuItemProps, index: number) => (
         <MenuItem
-          key={index}
+          key={`${index}`}
           {...item}
         />
       ))}

@@ -51,7 +51,7 @@ const ProjectCard = ({
           </p>
           <div className="flex flex-wrap items-center gap-3 pt-2">
             {stacksArray?.map((stack: string, index: number) => (
-              <div key={index}>
+              <div key={`${index}`}>
                 <Tooltip title={stack}>{STACKS[stack]}</Tooltip>
               </div>
             ))}

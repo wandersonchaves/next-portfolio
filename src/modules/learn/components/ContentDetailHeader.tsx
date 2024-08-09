@@ -19,7 +19,7 @@ const ContentDetailHeader = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      const scrollTop = window.scrollY || document.documentElement.scrollTop
       setIsScrolled(scrollTop > 250)
     }
 

@@ -80,7 +80,7 @@ export const fetchGithubData = async (
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return {
-        status: error.response?.status || 500,
+        status: error.response?.status ?? 500,
         data: null,
         error: error.message,
       }

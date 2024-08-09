@@ -65,7 +65,7 @@ const HeaderTop = () => {
             >
               {menus.map((menu, index) => (
                 <Link
-                  key={index}
+                  key={`${index}`}
                   href={menu.href}
                   passHref
                   className={clsx(

@@ -11,7 +11,7 @@ const PanelHeader = ({title, children}: PanelHeaderProps) => {
       <div className="rounded-md bg-neutral-600 px-2 py-1  text-xs text-neutral-50">
         {title}
       </div>
-      {children && children}
+      {children}
     </div>
   )
 }

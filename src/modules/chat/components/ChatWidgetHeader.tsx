@@ -17,7 +17,7 @@ const ChatWidgetHeader = () => {
     <div className="flex items-center justify-between border-b border-neutral-300 p-4 text-lg font-medium text-neutral-700 dark:border-neutral-700 dark:text-neutral-300">
       <div className="flex items-center gap-4">
         <div className="flex gap-2">
-          <div
+          <button
             onClick={toggleChat}
             className="group flex h-3.5 w-3.5 cursor-pointer items-center justify-center rounded-full bg-red-500 text-black"
             data-umami-event="Chat Widget: Close"
@@ -26,7 +26,7 @@ const ChatWidgetHeader = () => {
               size={13}
               className="hidden group-hover:flex"
             />
-          </div>
+          </button>
           <div
             onClick={toggleChat}
             className="group flex h-3.5 w-3.5 cursor-pointer items-center justify-center rounded-full bg-yellow-500 text-black"

@@ -7,7 +7,7 @@ import CodePlayground from './CodePlayground'
 import PlaygroundHeader from './PlaygroundHeader'
 
 interface PlaygroundProps {
-  id?: string | undefined
+  id: string | undefined
   isHeading?: boolean
   initialCode?: string
 }

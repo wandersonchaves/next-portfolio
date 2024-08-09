@@ -72,7 +72,7 @@ const ChatList = ({
       >
         {messages?.map((chat, index) => (
           <ChatItem
-            key={index}
+            key={`${index}`}
             onDelete={onDeleteMessage}
             {...chat}
           />

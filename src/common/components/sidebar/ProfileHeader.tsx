@@ -7,7 +7,6 @@ import Image from '../elements/Image'
 interface ProfileHeaderProps {
   expandMenu: boolean
   imageSize: number
-  isScrolled?: boolean
 }
 
 const ProfileHeader = ({expandMenu, imageSize}: ProfileHeaderProps) => {
