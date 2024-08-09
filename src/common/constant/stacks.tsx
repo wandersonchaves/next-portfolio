@@ -11,6 +11,7 @@ import {
   SiJest,
   SiJquery,
   SiLaravel,
+  SiMongodb,
   SiMui,
   SiNextdotjs,
   SiNginx,
@@ -201,4 +202,5 @@ export const STACKS: stacksProps = {
   Socket: <SiSocketdotio size={iconSize} />,
   Express: <SiExpress size={iconSize} />,
   Jquery: <SiJquery size={iconSize} />,
+  MongoDB: <SiMongodb size={iconSize} />,
 }

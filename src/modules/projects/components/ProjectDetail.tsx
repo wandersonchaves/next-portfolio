@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import type {FC} from 'react'
 
 import Image from '@/common/components/elements/Image'
 import MDXComponent from '@/common/components/elements/MDXComponent'
