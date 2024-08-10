@@ -41,7 +41,7 @@ const NowPlayingCard = ({isExpand = false}: {isExpand?: boolean}) => {
       )}
     >
       {!expand ? (
-        <div
+        <button
           className="m-2 cursor-pointer rounded-full bg-neutral-950 transition-all duration-100"
           onClick={handleMusicToggle}
         >
@@ -49,7 +49,7 @@ const NowPlayingCard = ({isExpand = false}: {isExpand?: boolean}) => {
             size={44}
             className="animate-pulse text-green-500"
           />
-        </div>
+        </button>
       ) : (
         <div className="mt-5 flex items-center justify-between rounded-md bg-green-400 px-3 py-2  text-neutral-800 dark:bg-green-500 dark:text-neutral-900 ">
           <div className="flex items-center gap-3">
