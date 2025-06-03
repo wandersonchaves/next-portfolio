@@ -1,30 +1,30 @@
-import {motion,Variants} from 'framer-motion'
+import { motion, Variants } from 'framer-motion';
 
-import cn from '@/common/libs/cn'
+import cn from '@/common/libs/cn';
 
 interface ProgressProps {
-  data: {name: string; percent?: number}
-  className?: string
+  data: { name: string; percent?: number };
+  className?: string;
 }
 
-const Progress = ({data, className}: ProgressProps) => {
-  const {name, percent = 0} = data
+const Progress = ({ data, className }: ProgressProps) => {
+  const { name, percent = 0 } = data;
 
   const progressVariants: Variants = {
-    initial: {width: 0},
+    initial: { width: 0 },
     animate: {
       width: `${percent}%`,
-      transition: {delay: 0.8},
+      transition: { delay: 0.8 },
     },
-  }
+  };
 
   return (
-    <div className="flex items-center justify-between gap-3">
-      <div className="w-24">{name}</div>
-      <div className="relative flex h-3 flex-1 justify-center rounded-full bg-neutral-200 dark:bg-neutral-800">
+    <div className='flex items-center justify-between gap-3'>
+      <div className='w-24'>{name}</div>
+      <div className='relative flex h-3 flex-1 justify-center rounded-full bg-neutral-200 dark:bg-neutral-800'>
         <motion.span
-          initial="initial"
-          animate="animate"
+          initial='initial'
+          animate='animate'
           variants={progressVariants}
           className={cn(
             className,
@@ -34,11 +34,11 @@ const Progress = ({data, className}: ProgressProps) => {
           &ensp;
         </motion.span>
       </div>
-      <div className="w-8 text-right text-neutral-600 dark:text-neutral-100">
+      <div className='w-8 text-right text-neutral-600 dark:text-neutral-100'>
         {percent.toFixed(0)}%
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Progress
+export default Progress;

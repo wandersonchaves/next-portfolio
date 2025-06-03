@@ -1,20 +1,17 @@
-import {CAREERS} from '@/common/constant/careers'
+import { CAREERS } from '@/common/constant/careers';
 
-import CareerCard from './CareerCard'
+import CareerCard from './CareerCard';
 
 const CareerList = () => {
   return (
-    <section className="space-y-6">
-      <div className="grid gap-3 ">
+    <section className='space-y-6'>
+      <div className='grid gap-3 '>
         {CAREERS?.map((career, index) => (
-          <CareerCard
-            key={index}
-            {...career}
-          />
+          <CareerCard key={index} {...career} />
         ))}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CareerList
+export default CareerList;

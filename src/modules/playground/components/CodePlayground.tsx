@@ -1,32 +1,32 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import clsx from 'clsx'
-import {useEffect, useRef} from 'react'
-import {LuPlay as PlayIcon,LuTrash2 as ClearIcon} from 'react-icons/lu'
+import clsx from 'clsx';
+import { useEffect, useRef } from 'react';
+import { LuPlay as PlayIcon, LuTrash2 as ClearIcon } from 'react-icons/lu';
 import {
   ImperativePanelHandle,
   Panel,
   PanelGroup,
   PanelResizeHandle,
-} from 'react-resizable-panels'
+} from 'react-resizable-panels';
 
-import useIsMobile from '@/common/hooks/useIsMobile'
+import useIsMobile from '@/common/hooks/useIsMobile';
 
-import CodeEditor from './CodeEditor'
-import ConsoleOutput from './ConsoleOutput'
-import PanelFooter from './PanelFooter'
-import PanelHeader from './PanelHeader'
+import CodeEditor from './CodeEditor';
+import ConsoleOutput from './ConsoleOutput';
+import PanelFooter from './PanelFooter';
+import PanelHeader from './PanelHeader';
 
 interface CodePlaygroundProps {
-  id?: string | undefined
-  code: string
-  output: string
-  isFullScreen?: boolean
-  onFullScreen?: () => void
-  onCloseFullScreen?: () => void
-  onRunCode?: () => void
-  onSetCode: (code: string) => void
-  onSetOutput: (output: string) => void
-  isError?: boolean
+  id?: string | undefined;
+  code: string;
+  output: string;
+  isFullScreen?: boolean;
+  onFullScreen?: () => void;
+  onCloseFullScreen?: () => void;
+  onRunCode?: () => void;
+  onSetCode: (code: string) => void;
+  onSetOutput: (output: string) => void;
+  isError?: boolean;
 }
 
 const CodePlayground = ({
@@ -41,41 +41,37 @@ const CodePlayground = ({
   onSetOutput,
   isError = false,
 }: CodePlaygroundProps) => {
-  const editorRef = useRef<ImperativePanelHandle>(null)
-  const isMobile = useIsMobile()
+  const editorRef = useRef<ImperativePanelHandle>(null);
+  const isMobile = useIsMobile();
 
-  const panelDirection = isMobile ? 'vertical' : 'horizontal'
+  const panelDirection = isMobile ? 'vertical' : 'horizontal';
 
-  const handleClearCode = () => onSetCode('')
-  const handleClearOutput = () => onSetOutput('')
+  const handleClearCode = () => onSetCode('');
+  const handleClearOutput = () => onSetOutput('');
 
   const onLayout = (sizes: number[]) => {
-    document.cookie = `react-resizable-panels:layout=${JSON.stringify(sizes)}`
-  }
+    document.cookie = `react-resizable-panels:layout=${JSON.stringify(sizes)}`;
+  };
 
   const handlePanelResize = () => {
-    const panel = editorRef.current
+    const panel = editorRef.current;
     if (panel !== null) {
-      if (isMobile) {
-        panel.resize(50)
-      }
+      isMobile && panel.resize(50);
     }
-  }
+  };
 
   useEffect(() => {
-    if (isMobile) {
-      handlePanelResize()
-    }
-  }, [isMobile])
+    isMobile && handlePanelResize();
+  }, [isMobile]);
 
   return (
     <>
-      <div className="flex flex-auto rounded-t-md border border-neutral-700 bg-neutral-900">
+      <div className='flex flex-auto rounded-t-md border border-neutral-700 bg-neutral-900'>
         <PanelGroup
           autoSaveId={id}
           direction={panelDirection}
           onLayout={onLayout}
-          style={{height: isMobile ? '100vh' : '100%'}}
+          style={{ height: isMobile ? '100vh' : '100%' }}
         >
           <Panel
             ref={editorRef}
@@ -83,12 +79,12 @@ const CodePlayground = ({
             minSize={20}
             collapsible={true}
           >
-            <PanelHeader title="JavaScript">
-              <div className="flex items-center gap-5">
+            <PanelHeader title='JavaScript'>
+              <div className='flex items-center gap-5'>
                 <div
-                  className="cursor-pointer"
+                  className='cursor-pointer'
                   onClick={handleClearCode}
-                  data-umami-event="Clear Editor Playground"
+                  data-umami-event='Clear Editor Playground'
                 >
                   <ClearIcon
                     size={18}
@@ -96,9 +92,9 @@ const CodePlayground = ({
                   />
                 </div>
                 <div
-                  className="cursor-pointer"
+                  className='cursor-pointer'
                   onClick={onRunCode}
-                  data-umami-event="Run Code Playground"
+                  data-umami-event='Run Code Playground'
                 >
                   <PlayIcon
                     size={18}
@@ -112,25 +108,21 @@ const CodePlayground = ({
             </PanelHeader>
             <CodeEditor
               code={code}
-              height="500px"
+              height='500px'
               isFullScreen={isFullScreen}
               onChange={(newCode) =>
                 newCode !== undefined && onSetCode(newCode)
               }
             />
           </Panel>
-          <PanelResizeHandle className="w-2 bg-neutral-700" />
-          <Panel
-            defaultSize={50}
-            minSize={20}
-            collapsible={true}
-          >
-            <PanelHeader title="Console">
-              <div className="flex items-center">
+          <PanelResizeHandle className='w-2 bg-neutral-700' />
+          <Panel defaultSize={50} minSize={20} collapsible={true}>
+            <PanelHeader title='Console'>
+              <div className='flex items-center'>
                 <div
-                  className="cursor-pointer"
+                  className='cursor-pointer'
                   onClick={handleClearOutput}
-                  data-umami-event="Clear Output Playground"
+                  data-umami-event='Clear Output Playground'
                 >
                   <ClearIcon
                     size={18}
@@ -156,7 +148,7 @@ const CodePlayground = ({
         onFullScreen={onFullScreen}
       />
     </>
-  )
-}
+  );
+};
 
-export default CodePlayground
+export default CodePlayground;

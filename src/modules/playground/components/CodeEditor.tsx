@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import MonacoEditor, {EditorProps} from '@monaco-editor/react'
+import MonacoEditor, { EditorProps } from '@monaco-editor/react';
 
 interface CodeEditorProps {
-  code: string
-  height?: string
-  onChange: EditorProps['onChange']
-  isFullScreen?: boolean
+  code: string;
+  height?: string;
+  onChange: EditorProps['onChange'];
+  isFullScreen?: boolean;
 }
 
 const editorConfig = {
@@ -13,14 +13,14 @@ const editorConfig = {
   minimap: {
     enabled: false,
   },
-  wordWrap: 'on',
+  wordWrap: 'on' as const,
   scrollbar: {
     verticalScrollbarSize: 9,
   },
   scrollBeyondLastLine: false,
   formatOnPaste: true,
   formatOnType: true,
-}
+};
 
 const CodeEditor = ({
   code,
@@ -30,21 +30,21 @@ const CodeEditor = ({
 }: CodeEditorProps) => {
   const handleEditorMount = (editor: any) => {
     setTimeout(function () {
-      editor.getAction('editor.action.formatDocument').run()
-    }, 500)
-  }
+      editor.getAction('editor.action.formatDocument').run();
+    }, 500);
+  };
 
   return (
     <MonacoEditor
       height={isFullScreen ? '70vh' : height}
-      language="javascript"
-      theme="vs-dark"
+      language='javascript'
+      theme='vs-dark'
       value={code}
       onChange={onChange}
       options={editorConfig}
       onMount={handleEditorMount}
     />
-  )
-}
+  );
+};
 
-export default CodeEditor
+export default CodeEditor;

@@ -1,42 +1,42 @@
-import {GetStaticPaths, GetStaticProps, NextPage} from 'next'
-import {useRouter} from 'next/router'
-import {NextSeo} from 'next-seo'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 
-import BackButton from '@/common/components/elements/BackButton'
-import Container from '@/common/components/elements/Container'
-import Loading from '@/common/components/elements/Loading'
-import PageHeading from '@/common/components/elements/PageHeading'
-import {LEARN_CONTENTS} from '@/common/constant/learn'
-import {loadMdxFiles} from '@/common/libs/mdx'
-import {ContentProps, MdxFileContentProps} from '@/common/types/learn'
-import ContentList from '@/modules/learn/components/ContentList'
+import BackButton from '@/common/components/elements/BackButton';
+import Container from '@/common/components/elements/Container';
+import Loading from '@/common/components/elements/Loading';
+import PageHeading from '@/common/components/elements/PageHeading';
+import { LEARN_CONTENTS } from '@/common/constant/learn';
+import { loadMdxFiles } from '@/common/libs/mdx';
+import { ContentProps, MdxFileContentProps } from '@/common/types/learn';
+import ContentList from '@/modules/learn/components/ContentList';
 
 interface ContentPageProps {
-  content: ContentProps | null
-  subContents: MdxFileContentProps[]
+  content: ContentProps | null;
+  subContents: MdxFileContentProps[];
 }
 
 const LearnContentPage: NextPage<ContentPageProps> = ({
   content,
   subContents,
 }) => {
-  const router = useRouter()
+  const router = useRouter();
 
   if (router.isFallback) {
-    return <Loading />
+    return <Loading />;
   }
 
   if (!content) {
-    return null
+    return null;
   }
 
-  const {title, description} = content
+  const { title, description } = content;
 
   const sortedSubContents = subContents.sort(
     (a, b) => a.frontMatter.id - b.frontMatter.id,
-  )
+  );
 
-  const canonicalUrl = `https://wandersonchaves/learn/${content?.slug}`
+  const canonicalUrl = `https://wandersonchaves.vercel.app/learn/${content?.slug}`;
 
   return (
     <>
@@ -54,12 +54,9 @@ const LearnContentPage: NextPage<ContentPageProps> = ({
           siteName: 'Wanderson Chaves',
         }}
       />
-      <Container data-aos="fade-up">
-        <BackButton url="/learn" />
-        <PageHeading
-          title={title}
-          description={description}
-        />
+      <Container data-aos='fade-up'>
+        <BackButton url='/learn' />
+        <PageHeading title={title} description={description} />
         <ContentList
           sortedSubContents={sortedSubContents}
           content={content}
@@ -67,27 +64,27 @@ const LearnContentPage: NextPage<ContentPageProps> = ({
         />
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default LearnContentPage
+export default LearnContentPage;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = LEARN_CONTENTS.map((content) => ({
-    params: {content: content.slug},
-  }))
+    params: { content: content.slug },
+  }));
 
   return {
     paths,
     fallback: true,
-  }
-}
+  };
+};
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
-  const contentSlug = params?.content as string
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const contentSlug = params?.content as string;
 
   const content =
-    LEARN_CONTENTS.find((item) => item?.slug === contentSlug) || null
+    LEARN_CONTENTS.find((item) => item?.slug === contentSlug) || null;
 
   if (!content) {
     return {
@@ -95,15 +92,15 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         destination: '/404',
         permanent: false,
       },
-    }
+    };
   }
 
-  const subContentList = loadMdxFiles(content?.slug)
+  const subContentList = loadMdxFiles(content?.slug);
 
   return {
     props: {
       content,
       subContents: subContentList,
     },
-  }
-}
+  };
+};

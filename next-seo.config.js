@@ -1,8 +1,7 @@
-const canonicalUrl = 'https://wandersonchaves.vercel.app'
-const metaImage =
-  'https://cloud.wandersonchaves.com/public/images/wandersonchaves.png'
+const canonicalUrl = 'https://wandersonchaves.vercel.app';
+const metaImage = 'https://avatars.githubusercontent.com/u/25234200?v=4';
 const metaDescription =
-  'Seasoned Software Engineer especially in Backend side, with a passion for creating pixel-perfect web experiences'
+  'Seasoned Software Engineer especially in Frontend side, with a passion for creating pixel-perfect web experiences';
 
 const defaultSEOConfig = {
   defaultTitle: 'Wanderson Chaves - Personal Website',
@@ -40,6 +39,6 @@ const defaultSEOConfig = {
     site: '@site',
     cardType: 'summary_large_image',
   },
-}
+};
 
-export default defaultSEOConfig
+export default defaultSEOConfig;

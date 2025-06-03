@@ -72,27 +72,27 @@ Here's the complete implementation in JavaScript:
 
 ```tsx
 function duplicateEncode(word) {
-  const lowercaseWord = word.toLowerCase()
-  let result = ''
+  const lowercaseWord = word.toLowerCase();
+  let result = '';
 
   for (let i = 0; i < lowercaseWord.length; i++) {
-    const char = lowercaseWord[i]
-    const count = lowercaseWord.split(char).length - 1
+    const char = lowercaseWord[i];
+    const count = lowercaseWord.split(char).length - 1;
 
     if (count > 1) {
-      result += ')'
+      result += ')';
     } else {
-      result += '('
+      result += '(';
     }
   }
 
-  return result
+  return result;
 }
 
 // Usage example:
-const input = 'Success'
-const encodedString = duplicateEncode(input)
-console.log(encodedString)
+const input = 'Success';
+const encodedString = duplicateEncode(input);
+console.log(encodedString);
 ```
 
 The resulting output will be printed to the console:

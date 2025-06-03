@@ -1,41 +1,43 @@
-import AOS from 'aos'
-import type {AppProps} from 'next/app'
-import dynamic from 'next/dynamic'
-import {SessionProvider} from 'next-auth/react'
-import {DefaultSeo} from 'next-seo'
-import {ThemeProvider} from 'next-themes'
-import {useEffect} from 'react'
+import AOS from 'aos';
+import type { AppProps } from 'next/app';
+import dynamic from 'next/dynamic';
+import { SessionProvider } from 'next-auth/react';
+import { DefaultSeo } from 'next-seo';
+import { ThemeProvider } from 'next-themes';
+import { useEffect } from 'react';
 
-import 'tailwindcss/tailwind.css'
-import 'aos/dist/aos.css'
-import '@/common/styles/globals.css'
+import 'tailwindcss/tailwind.css';
+import 'aos/dist/aos.css';
+import '@/common/styles/globals.css';
 
-import CommandPalette from '@/common/components/elements/CommandPalette'
-import Layout from '@/common/components/layouts'
-import {CommandPaletteProvider} from '@/common/context/CommandPaletteContext'
-import {firaCode, jakartaSans, onestSans, soraSans} from '@/common/styles/fonts'
+import CommandPalette from '@/common/components/elements/CommandPalette';
+import Layout from '@/common/components/layouts';
+import { CommandPaletteProvider } from '@/common/context/CommandPaletteContext';
+import {
+  firaCode,
+  jakartaSans,
+  onestSans,
+  soraSans,
+} from '@/common/styles/fonts';
 
-import defaultSEOConfig from '../../next-seo.config'
+import defaultSEOConfig from '../../next-seo.config';
 
 const ProgressBar = dynamic(
   () => import('src/common/components/elements/ProgressBar'),
-  {ssr: false},
-)
+  { ssr: false },
+);
 
-const App = ({Component, pageProps: {session, ...pageProps}}: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
   useEffect(() => {
     AOS.init({
       duration: 800,
       delay: 50,
-    })
-  }, [])
+    });
+  }, []);
 
   return (
     <>
-      <style
-        jsx
-        global
-      >
+      <style jsx global>
         {`
           html {
             --jakartaSans-font: ${jakartaSans.style.fontFamily};
@@ -47,10 +49,7 @@ const App = ({Component, pageProps: {session, ...pageProps}}: AppProps) => {
       </style>
       <DefaultSeo {...defaultSEOConfig} />
       <SessionProvider session={session}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-        >
+        <ThemeProvider attribute='class' defaultTheme='dark'>
           <CommandPaletteProvider>
             <Layout>
               <CommandPalette />
@@ -61,7 +60,7 @@ const App = ({Component, pageProps: {session, ...pageProps}}: AppProps) => {
         </ThemeProvider>
       </SessionProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

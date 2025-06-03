@@ -1,14 +1,22 @@
 services:
   postgres:
-    image: bitnami/postgresql:latest
+    image: postgres:16
+    container_name: next-portfolio-postgres
+    restart: unless-stopped
     ports:
       - '5432:5432'
     environment:
-      - POSTGRES_USER=portfolio
-      - POSTGRES_PASSWORD=portfolio
-      - POSTGRES_DB=portfolio
+      POSTGRES_DB: next_portfolio
+      POSTGRES_USER: portfolio_username
+      POSTGRES_PASSWORD: portfolio_password
     volumes:
-      - portfolio_pg_data:/bitnami/postgresql
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
 volumes:
-  portfolio_pg_data:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

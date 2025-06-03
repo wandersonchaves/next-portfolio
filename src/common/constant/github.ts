@@ -6,4 +6,4 @@ export const GITHUB_ACCOUNTS = [
     type: 'personal',
     is_active: true,
   },
-]
+];

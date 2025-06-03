@@ -1,15 +1,16 @@
-import clsx from 'clsx'
-import Link from 'next/link'
-import {MdVerified as VerifiedIcon} from 'react-icons/md'
+import clsx from 'clsx';
+import Link from 'next/link';
+import { MdVerified as VerifiedIcon } from 'react-icons/md';
 
-import Image from '../elements/Image'
+import Image from '../elements/Image';
 
 interface ProfileHeaderProps {
-  expandMenu: boolean
-  imageSize: number
+  expandMenu: boolean;
+  imageSize: number;
+  isScrolled?: boolean;
 }
 
-const ProfileHeader = ({expandMenu, imageSize}: ProfileHeaderProps) => {
+const ProfileHeader = ({ expandMenu, imageSize }: ProfileHeaderProps) => {
   return (
     <div
       className={clsx(
@@ -18,32 +19,28 @@ const ProfileHeader = ({expandMenu, imageSize}: ProfileHeaderProps) => {
       )}
     >
       <Image
-        src="https://github.com/wandersonchaves.png"
-        alt="Wanderson Chaves"
+        src='https://avatars.githubusercontent.com/u/25234200?v=4'
+        alt='Wanderson Chaves'
         width={expandMenu ? 80 : imageSize}
         height={expandMenu ? 80 : imageSize}
-        rounded="rounded-full"
-        className="rotate-3 dark:border-neutral-600 lg:hover:scale-105"
+        rounded='rounded-full'
+        className='rotate-3 dark:border-neutral-600 lg:hover:scale-105'
       />
-      <div className="mt-1 flex items-center gap-2 lg:mt-4">
-        <Link
-          href="/"
-          passHref
-        >
-          <h2 className="flex-grow  text-lg font-medium lg:text-xl">
-            Wanderson Chaves
-          </h2>
-        </Link>
-        <VerifiedIcon
-          size={18}
-          className="text-blue-400"
-        />
-      </div>
-      <div className="hidden text-[15px] text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex">
-        @wandersonchaves
-      </div>
+      <>
+        <div className='mt-1 flex items-center gap-2 lg:mt-4'>
+          <Link href='/' passHref>
+            <h2 className='flex-grow  text-lg font-medium lg:text-xl'>
+              Wanderson Chaves
+            </h2>
+          </Link>
+          <VerifiedIcon size={18} className='text-blue-400' />
+        </div>
+        <div className='hidden text-[15px] text-neutral-600 transition-all duration-300 hover:text-neutral-700 dark:text-neutral-500 dark:hover:text-neutral-400 lg:flex'>
+          @wandersonchaves
+        </div>
+      </>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileHeader
+export default ProfileHeader;

@@ -1,15 +1,15 @@
-import clsx from 'clsx'
+import clsx from 'clsx';
 
-import Button from '@/common/components/elements/Button'
-import {SOCIAL_MEDIA} from '@/common/constant/menu'
+import Button from '@/common/components/elements/Button';
+import { SOCIAL_MEDIA } from '@/common/constant/menu';
 
 const SocialMediaList = () => {
-  const handleAction = (link: string) => window.open(link, '_blank')
+  const handleAction = (link: string) => window.open(link, '_blank');
 
   return (
-    <div className="space-y-5 pb-2">
-      <h3 className="text-lg font-medium">Find me on social media</h3>
-      <div className="flex flex-col justify-between gap-3 md:flex-row">
+    <div className='space-y-5 pb-2'>
+      <h3 className='text-lg font-medium'>Find me on social media</h3>
+      <div className='flex flex-col justify-between gap-3 md:flex-row'>
         {SOCIAL_MEDIA?.map((item, index: number) => (
           <Button
             className={clsx(
@@ -26,7 +26,7 @@ const SocialMediaList = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SocialMediaList
+export default SocialMediaList;

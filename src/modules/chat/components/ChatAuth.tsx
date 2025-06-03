@@ -1,9 +1,9 @@
-import clsx from 'clsx'
-import {signIn} from 'next-auth/react'
-import {BsGithub as GithubIcon} from 'react-icons/bs'
-import {FcGoogle as GoogleIcon} from 'react-icons/fc'
+import clsx from 'clsx';
+import { signIn } from 'next-auth/react';
+import { BsGithub as GithubIcon } from 'react-icons/bs';
+import { FcGoogle as GoogleIcon } from 'react-icons/fc';
 
-import Button from '@/common/components/elements/Button'
+import Button from '@/common/components/elements/Button';
 
 const Providers = [
   {
@@ -20,13 +20,13 @@ const Providers = [
     textColor: 'text-white',
     label: 'Sign in with Github',
   },
-]
+];
 
-const ChatAuth = ({isWidget = false}: {isWidget?: boolean}) => {
+const ChatAuth = ({ isWidget = false }: { isWidget?: boolean }) => {
   return (
-    <div className="flex flex-col border-t border-neutral-300 py-1 dark:border-neutral-900">
-      <div className="mb-1 space-y-5 px-4 py-3 text-center text-neutral-700 dark:text-neutral-400">
-        <p className="text-sm">
+    <div className='flex flex-col border-t border-neutral-300 py-1 dark:border-neutral-900'>
+      <div className='mb-1 space-y-5 px-4 py-3 text-center text-neutral-700 dark:text-neutral-400'>
+        <p className='text-sm'>
           Please sign in to start. Don't worry, your data is safe.
         </p>
         <div
@@ -49,7 +49,7 @@ const ChatAuth = ({isWidget = false}: {isWidget?: boolean}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChatAuth
+export default ChatAuth;
