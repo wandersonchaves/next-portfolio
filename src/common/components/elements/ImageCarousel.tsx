@@ -1,5 +1,7 @@
-import { useEffect, useRef } from 'react';
-import Slider from 'react-slick';
+import type { MutableRefObject } from 'react';
+import { ComponentType, useEffect, useRef } from 'react';
+import type { Settings } from 'react-slick';
+import SlickSlider from 'react-slick';
 import { useWindowSize } from 'usehooks-ts';
 
 import 'slick-carousel/slick/slick.css';
@@ -7,66 +9,51 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import Image from './Image';
 
+const Slider = SlickSlider as unknown as ComponentType<any>;
+
 interface ImageCarouselProps {
   images: string[];
   interval?: number;
 }
 
 const ImageCarousel = ({ images, interval = 3000 }: ImageCarouselProps) => {
-  const sliderRef = useRef<Slider>(null);
-
+  const sliderRef: MutableRefObject<SlickSlider | null> = useRef(null);
   const { width } = useWindowSize();
   const isMobile = width < 480;
 
-  const getDeviceWidth = () => {
-    let slidesToShow = 5;
-
-    if (width < 480) {
-      slidesToShow = 2;
-    } else if (width <= 768) {
-      slidesToShow = 4;
-    }
-
-    return slidesToShow;
+  const getDeviceWidth = (): number => {
+    if (width < 480) return 2;
+    if (width <= 768) return 4;
+    return 5;
   };
 
   useEffect(() => {
     const slider = sliderRef.current;
 
     const startScrolling = () => {
-      if (slider && slider.innerSlider && slider.innerSlider.list) {
-        slider.slickPlay();
-      }
+      slider?.slickPlay();
     };
 
     const stopScrolling = () => {
-      if (slider && slider.innerSlider && slider.innerSlider.list) {
-        slider.slickPause();
-      }
+      slider?.slickPause();
     };
 
-    if (slider && slider.innerSlider && slider.innerSlider.list) {
-      slider.innerSlider.list.addEventListener('mouseenter', stopScrolling);
-      slider.innerSlider.list.addEventListener('mouseleave', startScrolling);
-
+    const sliderList = slider?.innerSlider?.list;
+    if (sliderList) {
+      sliderList.addEventListener('mouseenter', stopScrolling);
+      sliderList.addEventListener('mouseleave', startScrolling);
       startScrolling();
     }
 
     return () => {
-      if (slider && slider.innerSlider && slider.innerSlider.list) {
-        slider.innerSlider.list.removeEventListener(
-          'mouseenter',
-          stopScrolling,
-        );
-        slider.innerSlider.list.removeEventListener(
-          'mouseleave',
-          startScrolling,
-        );
+      if (sliderList) {
+        sliderList.removeEventListener('mouseenter', stopScrolling);
+        sliderList.removeEventListener('mouseleave', startScrolling);
       }
     };
   }, []);
 
-  const settings = {
+  const settings: Settings = {
     dots: false,
     arrows: false,
     infinite: true,
@@ -80,7 +67,7 @@ const ImageCarousel = ({ images, interval = 3000 }: ImageCarouselProps) => {
 
   return (
     <Slider ref={sliderRef} {...settings} className='pt-5'>
-      {images?.map((image, index) => (
+      {images.map((image, index) => (
         <div key={index}>
           <Image
             src={image}
