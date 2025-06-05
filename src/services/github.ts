@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 
 import { GITHUB_ACCOUNTS } from '@/common/constant/github';
 
@@ -32,29 +32,38 @@ export const fetchGithubData = async (
   username: string,
   token: string | undefined,
 ) => {
-  const response = await axios.post(
-    GITHUB_USER_ENDPOINT,
-    {
-      query: GITHUB_USER_QUERY,
-      variables: {
-        username: username,
-      },
-    },
-    {
-      headers: {
-        Authorization: `bearer ${token}`,
-      },
-    },
-  );
-
-  const status: number = response.status;
-  const responseJson = response.data;
-
-  if (status > 400) {
-    return { status, data: {} };
+  if (!token) {
+    return { status: 401, data: {} };
   }
 
-  return { status, data: responseJson.data.user };
+  try {
+    const response = await axios.post(
+      GITHUB_USER_ENDPOINT,
+      {
+        query: GITHUB_USER_QUERY,
+        variables: {
+          username,
+        },
+      },
+      {
+        headers: {
+          Authorization: `bearer ${token}`,
+        },
+      },
+    );
+
+    return { status: response.status, data: response.data.data.user };
+  } catch (err) {
+    const error = err as AxiosError<{ message?: string }>;
+    const status = error.response?.status ?? 500;
+
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line no-console
+      console.warn('[GitHub API] Error:', error.message);
+    }
+
+    return { status, data: {} };
+  }
 };
 
 export const getGithubUser = async (type: string) => {

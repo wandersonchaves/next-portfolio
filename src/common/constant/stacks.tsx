@@ -16,9 +16,9 @@ import {
   SiNginx,
   SiNodedotjs,
   SiNuxtdotjs,
-  SiPhp,
   SiPrisma,
   SiPwa,
+  SiPython,
   SiReact,
   SiRedux,
   SiSocketdotio,
@@ -39,7 +39,7 @@ export type stacksProps = {
 const iconSize = 20;
 
 export const STACKS: stacksProps = {
-  PHP: <SiPhp size={iconSize} className='text-blue-500' />,
+  Python: <SiPython size={iconSize} className='text-yellow-500' />,
   JavaScript: <SiJavascript size={iconSize} className='text-yellow-400' />,
   TypeScript: <SiTypescript size={iconSize} className='text-blue-400' />,
   'Next.js': <SiNextdotjs size={iconSize} />,
