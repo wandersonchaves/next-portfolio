@@ -5,7 +5,7 @@ import {
   HiOutlineClipboardCopy as CopyIcon,
 } from 'react-icons/hi';
 import { CodeProps } from 'react-markdown/lib/ast-to-react';
-import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismLight } from 'react-syntax-highlighter';
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 import diff from 'react-syntax-highlighter/dist/cjs/languages/prism/diff';
 import javascript from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
@@ -14,19 +14,13 @@ import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typesc
 import { a11yDark as themeColor } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { useCopyToClipboard } from 'usehooks-ts';
 
-const languages = {
-  javascript: 'javascript',
-  typescript: 'typescript',
-  diff: 'diff',
-  tsx: 'tsx',
-  css: 'css',
-};
+const SyntaxHighlighter = PrismLight as unknown as React.ComponentType<any>;
 
-SyntaxHighlighter.registerLanguage(languages.javascript, javascript);
-SyntaxHighlighter.registerLanguage(languages.typescript, typescript);
-SyntaxHighlighter.registerLanguage(languages.diff, diff);
-SyntaxHighlighter.registerLanguage(languages.tsx, tsx);
-SyntaxHighlighter.registerLanguage(languages.css, css);
+PrismLight.registerLanguage('javascript', javascript);
+PrismLight.registerLanguage('typescript', typescript);
+PrismLight.registerLanguage('tsx', tsx);
+PrismLight.registerLanguage('diff', diff);
+PrismLight.registerLanguage('css', css);
 
 const CodeBlock = ({
   className = '',
@@ -35,8 +29,7 @@ const CodeBlock = ({
   ...props
 }: CodeProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  const [value, copy] = useCopyToClipboard();
+  const [, copy] = useCopyToClipboard();
   const match = /language-(\w+)/.exec(className || '');
 
   const handleCopy = (code: string) => {
