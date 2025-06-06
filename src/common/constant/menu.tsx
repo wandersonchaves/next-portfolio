@@ -15,7 +15,6 @@ import {
   FiRss as BlogIcon,
   FiUser as ProfileIcon,
 } from 'react-icons/fi';
-import { PiChatCircleDotsBold as ChatIcon } from 'react-icons/pi';
 import { SiJavascript } from 'react-icons/si';
 
 import { MenuItemProps } from '../types/menu';
@@ -86,15 +85,15 @@ export const MENU_ITEMS: MenuItemProps[] = [
     eventName: 'Pages: Contact',
     type: 'Pages',
   },
-  {
-    title: 'Guestbook',
-    href: '/guestbook',
-    icon: <ChatIcon size={iconSize} />,
-    isShow: true,
-    isExternal: false,
-    eventName: 'Pages: Chat',
-    type: 'Pages',
-  },
+  // {
+  //   title: 'Guestbook',
+  //   href: '/guestbook',
+  //   icon: <ChatIcon size={iconSize} />,
+  //   isShow: true,
+  //   isExternal: false,
+  //   eventName: 'Pages: Chat',
+  //   type: 'Pages',
+  // },
 ];
 
 export const MENU_APPS: MenuItemProps[] = [
@@ -112,7 +111,7 @@ export const MENU_APPS: MenuItemProps[] = [
 export const SOCIAL_MEDIA: MenuItemProps[] = [
   {
     title: 'Email',
-    href: 'mailto:wandersonchaves.dev@gmail.com',
+    href: 'mailto:wandersonchavesbr@gmail.com',
     icon: <EmailIcon size={iconSize} />,
     isShow: true,
     isExternal: true,

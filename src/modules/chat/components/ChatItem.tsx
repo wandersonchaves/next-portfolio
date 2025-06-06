@@ -23,7 +23,7 @@ const ChatItem = ({
 }: ChatItemProps) => {
   const { data: session } = useSession();
 
-  const authorEmail = 'wandersonchaves.dev@gmail.com';
+  const authorEmail = 'wandersonchavesbr@gmail.com';
 
   const pattern = /@([^:]+):/g;
   const modifiedMessage = message?.split(pattern).map((part, index) => {
