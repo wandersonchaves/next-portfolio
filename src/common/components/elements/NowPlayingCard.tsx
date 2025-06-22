@@ -1,6 +1,8 @@
+'use client';
+
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsSpotify as SpotifyIcon } from 'react-icons/bs';
 import { MdClose as CloseIcon } from 'react-icons/md';
 import useSWR from 'swr';
@@ -11,17 +13,33 @@ import { fetcher } from '@/services/fetcher';
 import AnimatedBars from './AnimatedBars';
 
 const NowPlayingCard = ({ isExpand = false }: { isExpand?: boolean }) => {
-  const { data } = useSWR<NowPlayingProps>('/api/now-playing', fetcher);
-
   const [expand, setExpand] = useState(isExpand);
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const { data } = useSWR<NowPlayingProps>(
+    hasMounted ? '/api/now-playing' : null,
+    fetcher,
+  );
+
+  if (!data?.title) {
+    return (
+      <div className='fixed bottom-0 w-full p-4 text-center text-sm text-neutral-400 dark:text-neutral-500'>
+        Nenhuma música tocando no momento 🎧
+      </div>
+    );
+  }
 
   const trimmedSongTitle =
     data?.title &&
-    data?.title.slice(0, 40) + (data?.title?.length > 40 ? '...' : '');
+    data?.title.slice(0, 40) + (data.title.length > 40 ? '...' : '');
 
   const trimmedSongArtist =
     data?.artist &&
-    data?.artist.slice(0, 20) + (data?.artist?.length > 20 ? '...' : '');
+    data.artist.slice(0, 20) + (data.artist.length > 20 ? '...' : '');
 
   const handleOpenSongUrl = (url?: string) => {
     url && window.open(url, '_blank');
@@ -29,7 +47,7 @@ const NowPlayingCard = ({ isExpand = false }: { isExpand?: boolean }) => {
 
   const handleMusicToggle = () => setExpand(!expand);
 
-  if (!data?.songUrl) return null;
+  if (!hasMounted || !data?.songUrl) return null;
 
   return (
     <div
@@ -46,14 +64,14 @@ const NowPlayingCard = ({ isExpand = false }: { isExpand?: boolean }) => {
           <SpotifyIcon size={44} className='animate-pulse text-green-500' />
         </div>
       ) : (
-        <div className='mt-5 flex items-center justify-between rounded-md bg-green-400 px-3 py-2  text-neutral-800 dark:bg-green-500 dark:text-neutral-900 '>
+        <div className='mt-5 flex items-center justify-between rounded-md bg-green-400 px-3 py-2 text-neutral-800 dark:bg-green-500 dark:text-neutral-900'>
           <div className='flex items-center gap-3'>
             {data?.albumImageUrl && (
               <Image
                 className='rounded-md'
                 unoptimized
-                alt={data?.album}
-                src={data?.albumImageUrl}
+                alt={data.album}
+                src={data.albumImageUrl}
                 width={60}
                 height={60}
               />

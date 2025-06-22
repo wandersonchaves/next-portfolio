@@ -1,3 +1,7 @@
+'use client';
+
+import SpotifyLoginButton from '@/components/SpotifyLoginButton';
+
 import Breakline from '@/common/components/elements/Breakline';
 
 import BlogPreview from './BlogPreview';
@@ -5,7 +9,11 @@ import Introduction from './Introduction';
 import Services from './Services';
 import SkillsSection from './SkillsSection';
 
-const Home = () => {
+type HomeProps = {
+  isConnected: boolean;
+};
+
+const Home = ({ isConnected }: HomeProps) => {
   return (
     <>
       <Introduction />
@@ -15,6 +23,9 @@ const Home = () => {
       <SkillsSection />
       <Breakline className='my-8' />
       <Services />
+      <Breakline className='my-8' />
+
+      {!isConnected && <SpotifyLoginButton />}
     </>
   );
 };

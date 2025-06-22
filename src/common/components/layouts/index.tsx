@@ -1,15 +1,21 @@
 import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
 import useHasMounted from '@/common/hooks/useHasMounted';
 
 import HeaderSidebar from './header/HeaderSidebar';
 import HeaderTop from './header/HeaderTop';
-import NowPlayingBar from '../elements/NowPlayingBar';
-import NowPlayingCard from '../elements/NowPlayingCard';
+
+const NowPlayingBar = dynamic(() => import('../elements/NowPlayingBar'), {
+  ssr: false,
+});
+const NowPlayingCard = dynamic(() => import('../elements/NowPlayingCard'), {
+  ssr: false,
+});
 
 interface LayoutProps {
   children: ReactNode;
@@ -19,7 +25,11 @@ const Layout = ({ children }: LayoutProps) => {
   const { resolvedTheme } = useTheme();
   const hasMounted = useHasMounted();
   const { width } = useWindowSize();
-  const isMobile = width < 480;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(width < 480);
+  }, [width]);
 
   const isDarkTheme =
     hasMounted && (resolvedTheme === 'dark' || resolvedTheme === 'system');
@@ -33,10 +43,10 @@ const Layout = ({ children }: LayoutProps) => {
     router.pathname.startsWith('/blog/') ||
     router.pathname.startsWith('/learn/');
 
-  // const isShowChatButton = pageName !== 'guestbook';
+  if (!hasMounted) return null;
 
   return (
-    <>
+    <div suppressHydrationWarning>
       <div
         className={clsx(
           'mx-auto max-w-6xl',
@@ -57,9 +67,8 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         )}
       </div>
-      {/* {isShowChatButton && <ChatButton />} */}
       {isMobile ? <NowPlayingCard /> : <NowPlayingBar />}
-    </>
+    </div>
   );
 };
 

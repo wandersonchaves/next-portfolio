@@ -47,9 +47,10 @@ export interface SongProps {
 export interface TrackProps {
   album: {
     name: string;
-    image: {
-      width: number;
+    image?: {
       url: string;
+      width: number;
+      height: number;
     };
   };
   artist: string;
