@@ -1,23 +1,23 @@
 export const ABOUT = `
 <p>
-    Hello! Thanks for stopping by my personal website.
+Hi there! Thanks for visiting my portfolio.
 </p>
 <p>
-    I'm Wanderson. I've been working in web development for over 10 years, doing both the coding you see on the screen (frontend) and the stuff that happens behind the scenes (backend). I know how to manage projects using methods like Waterfall and Agile. But what really gets me excited is making websites and apps that are easy for everyone to use and look good too!
+I’m Wanderson Chaves, a software engineer with over 10 years of experience in web development — from frontend interfaces to backend architecture. In recent years, I’ve specialized in back-end systems, clean code practices, and scalable solutions for industries such as healthcare, legal, and oil & gas.
 </p>
 <p>
-    I'm really into JavaScript and Python, which are languages used to build websites. I also know a bunch of frameworks that make building websites even easier, like React, Vue, Angular, Node.js, and Python frameworks like Django. I love learning about new web tools and features.
+I currently work with TypeScript and NestJS, Prisma ORM, PostgreSQL, and message-driven architectures using RabbitMQ. I also build asynchronous systems with Celery and Redis, and deploy cloud-native applications on AWS (ECS, RDS, S3). I have additional experience with React, Next.js, Django, and third-party integrations including payment gateways, WhatsApp automation, and Dialogflow.
 </p>
 <p>
-    In my career, I've led teams to build software for a wide range of companies, from large corporations to innovative startups.
+I’m passionate about solving real problems through technology, leading with clarity, and collaborating with teams to ship high-impact results. I value clean architecture, performance, and sustainable code above all.
 </p>
 <p>
-    I believe that good communication is super important in any job.
+Always learning and evolving, I’m driven to do better every day.
 </p>
 <p>
-    I'm good at adapting to different situations, working efficiently, and always trying to do my best. My experience has taught me how to solve problems and lead teams, but I'm also happy to work with others to get things done. I'm excited about the chance to work together and make cool stuff!
+If you’re looking for someone to build reliable systems, scale your product, or lead your tech efforts with long-term vision — I’d love to work with you.
 </p>
 <p>
-    I'm looking forward to the possibility of working with you!
+Let’s build something great together.
 </p>
 `;

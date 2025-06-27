@@ -17,10 +17,14 @@ const Introduction = () => {
       </div>
 
       <p className='mt-6 leading-[1.8] text-neutral-800 dark:text-neutral-300 md:leading-loose'>
-        Seasoned Software Engineer especially in Frontend side, with a passion
-        for creating pixel-perfect web experiences. I work with JavaScript and
-        specialize in all-things web. I thrive on collaborating with teams to
-        deliver efficient, scalable, and visually appealing web applications.
+        Senior Software Engineer specialized in back-end development with a
+        strong foundation in Clean Architecture and scalable systems. I build
+        modern APIs, intelligent automations, and complex integrations focused
+        on performance, maintainability, and scalability. My main stack includes
+        JavaScript/TypeScript (NestJS, Node.js), Python (Django), RabbitMQ for
+        messaging, PostgreSQL, and AWS cloud infrastructure. I turn ideas into
+        robust and reliable solutions with clean, testable code built for the
+        long run.
       </p>
     </section>
   );
