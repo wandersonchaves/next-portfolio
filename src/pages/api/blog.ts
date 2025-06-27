@@ -1,60 +1,51 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-import prisma from '@/common/libs/prisma';
-import { BlogItemProps } from '@/common/types/blog';
-import { getBlogList } from '@/services/blog';
+import { getAllPosts } from '@/services/devto';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
-): Promise<void> {
+) {
   try {
-    res.setHeader(
-      'Cache-Control',
-      'public, s-maxage=60, stale-while-revalidate=30',
-    );
+    const { page = '1', per_page = '6', search = '' } = req.query;
 
-    const { page, per_page, categories, search } = req.query;
+    const allPosts = await getAllPosts();
 
-    const responseData = await getBlogList({
-      page: Number(page) || 1,
-      per_page: Number(per_page) || 9,
-      categories: categories ? Number(categories) : undefined,
-      search: search ? String(search) : undefined,
+    const normalizedSearch = (search as string).toLowerCase();
+    const filteredPosts = allPosts.filter((post) => {
+      const titleMatch = post.title?.toLowerCase().includes(normalizedSearch);
+      const descriptionMatch = post.description
+        ?.toLowerCase()
+        .includes(normalizedSearch);
+      return titleMatch || descriptionMatch;
     });
 
-    const blogItemsWithViews = await Promise.all(
-      responseData?.data?.posts?.map(async (blogItem: BlogItemProps) => {
-        const { slug } = blogItem;
+    const pageNum = parseInt(page as string, 10);
+    const perPageNum = parseInt(per_page as string, 10);
+    const totalPosts = filteredPosts.length;
+    const totalPages = Math.ceil(totalPosts / perPageNum);
 
-        const contentMeta = await prisma.contentmeta.findUnique({
-          where: { slug: slug as string },
-          select: { views: true },
-        });
-
-        const viewsCount = contentMeta?.views ?? 0;
-
-        return {
-          ...blogItem,
-          total_views_count: viewsCount,
-        };
-      }),
+    const paginatedPosts = filteredPosts.slice(
+      (pageNum - 1) * perPageNum,
+      pageNum * perPageNum,
     );
 
-    const responses = {
+    res.status(200).json({
       status: true,
       data: {
-        total_pages: responseData?.data?.total_pages,
-        total_posts: responseData?.data?.total_posts,
-        page: responseData?.data?.page,
-        per_page: responseData?.data?.per_page,
-        posts: blogItemsWithViews,
-        categories: responseData?.data?.categories,
+        posts: paginatedPosts,
+        page: pageNum,
+        per_page: perPageNum,
+        total_pages: totalPages,
+        total_posts: totalPosts,
+        categories: [],
       },
-    };
-
-    res.status(200).json(responses);
+    });
   } catch (error) {
-    res.status(200).json({ status: false, error });
+    console.error('[DEVTO_POSTS_ERROR]', error);
+    res.status(500).json({
+      status: false,
+      error: 'Erro ao obter os posts do blog.',
+    });
   }
 }

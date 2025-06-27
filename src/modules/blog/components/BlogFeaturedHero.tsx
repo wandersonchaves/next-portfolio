@@ -62,7 +62,7 @@ const BlogFeaturedHero = ({ data }: BlogFeaturedProps) => {
       >
         <Image
           src={currentFeatured?.featured_image_url || defaultImage}
-          alt={currentFeatured?.title?.rendered}
+          alt={currentFeatured?.title}
           fill={true}
           sizes='100vw, 100vh'
           className='h-full w-full transform object-cover transition-transform duration-300'
@@ -82,24 +82,24 @@ const BlogFeaturedHero = ({ data }: BlogFeaturedProps) => {
                 href={`/blog/${currentFeatured?.slug}?id=${currentFeatured?.id}`}
               >
                 <h3 className='group relative flex w-fit cursor-pointer  text-2xl font-bold leading-normal'>
-                  {currentFeatured?.title?.rendered}
+                  {currentFeatured?.title}
                   <span className='absolute -bottom-0.5 left-0 h-0.5 w-full origin-left scale-x-0 transform bg-white transition-transform group-hover:scale-x-100'></span>
                 </h3>
               </Link>
               <p className='hidden sm:block'>
-                {formatExcerpt(currentFeatured?.excerpt?.rendered)}
+                {formatExcerpt(currentFeatured?.description ?? '')}
               </p>
               <div className='flex gap-x-5 pt-1 text-neutral-400'>
                 <div className='flex items-center gap-1 '>
                   <DateIcon size={16} />
                   <span className='ml-0.5 text-xs'>
-                    {formatDate(currentFeatured?.date)}
+                    {formatDate(currentFeatured?.published_at)}
                   </span>
                 </div>
                 <div className='flex items-center gap-1'>
                   <ViewIcon size={15} />
                   <span className='ml-0.5 text-[13px]'>
-                    {currentFeatured?.total_views_count?.toLocaleString()} Views
+                    {currentFeatured?.page_views_count} Views
                   </span>
                 </div>
               </div>
@@ -136,7 +136,7 @@ const BlogFeaturedHero = ({ data }: BlogFeaturedProps) => {
             >
               <Image
                 src={item.featured_image_url || defaultImage}
-                alt={item?.title?.rendered}
+                alt={item?.title}
                 fill={true}
                 sizes='100vw, 100vh'
                 className='object-cover'

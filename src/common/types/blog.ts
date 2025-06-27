@@ -16,9 +16,13 @@ export type BlogItemProps = {
   slug: string;
   status: string;
   link: string;
-  title: {
-    rendered: string;
-  };
+  title: string;
+  description?: string | null;
+  cover_image?: string | null;
+  published_at: string;
+  page_views_count?: number;
+  reading_time_minutes?: number;
+  tag_list?: string[];
   content: {
     rendered: string;
     markdown: string;
@@ -67,9 +71,16 @@ export type BlogDetailProps = {
   status: string;
   type: string;
   link: string;
-  title: {
-    rendered: string;
-  };
+  description?: string | null;
+  published_at: string;
+  last_comment_at: string;
+  social_image: string;
+  title: string;
+  comments_count: number;
+  reading_time_minutes: number;
+  page_views_count: number;
+  body_markdown: string;
+  public_reactions_count: number;
   content: {
     rendered: string;
     markdown: string;
@@ -155,4 +166,16 @@ export type CommentItemProps = {
   body_html: string;
   user: UserProps;
   children: Comment[];
+};
+
+export type BlogCardProps = {
+  id: number;
+  title: string;
+  description: string;
+  cover_image: string | null;
+  published_at: string;
+  slug: string;
+  page_views_count: number;
+  reading_time_minutes: number;
+  tag_list: string[];
 };

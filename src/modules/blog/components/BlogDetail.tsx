@@ -1,42 +1,31 @@
-import useSWR from 'swr';
-
 import Breakline from '@/common/components/elements/Breakline';
 import MDXComponent from '@/common/components/elements/MDXComponent';
-import { calculateReadingTime } from '@/common/helpers';
 import { BlogDetailProps } from '@/common/types/blog';
-import { fetcher } from '@/services/fetcher';
 
 import BlogHeader from './BlogHeader';
 
 const BlogDetail = ({
-  id,
   title,
-  date,
-  slug,
-  content,
+  body_markdown,
   tags_list,
+  comments_count = 0,
+  reading_time_minutes = 0,
+  published_at,
+  public_reactions_count = 0,
 }: BlogDetailProps) => {
-  const { data: viewsData } = useSWR(
-    `/api/views?slug=${slug}&id=${id}`,
-    fetcher,
-  );
-
-  const viewsCount = viewsData?.views || 0;
   const tagList = tags_list || [];
-
-  const readingTimeMinutes = calculateReadingTime(content?.rendered) ?? 0;
 
   return (
     <>
       <BlogHeader
-        title={title?.rendered}
-        comments_count={0}
-        reading_time_minutes={readingTimeMinutes}
-        published_at={date}
-        page_views_count={viewsCount}
+        title={title}
+        comments_count={comments_count}
+        reading_time_minutes={reading_time_minutes}
+        published_at={published_at}
+        public_reactions_count={public_reactions_count}
       />
       <div className='space-y-6 leading-[1.8] dark:text-neutral-300 '>
-        {content?.rendered && <MDXComponent>{content?.markdown}</MDXComponent>}
+        {body_markdown && <MDXComponent>{body_markdown}</MDXComponent>}
       </div>
       {tagList?.length >= 1 && (
         <div className='my-10 space-y-2'>

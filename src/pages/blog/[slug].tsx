@@ -1,19 +1,12 @@
-import axios from 'axios';
 import { GetServerSideProps, NextPage } from 'next';
-import dynamic from 'next/dynamic';
 import { NextSeo } from 'next-seo';
-import { useEffect } from 'react';
 
 import BackButton from '@/common/components/elements/BackButton';
 import Container from '@/common/components/elements/Container';
 import { formatExcerpt } from '@/common/helpers';
 import { BlogDetailProps } from '@/common/types/blog';
 import BlogDetail from '@/modules/blog/components/BlogDetail';
-import { getBlogDetail } from '@/services/blog';
-
-const GiscusComment = dynamic(
-  () => import('@/modules/blog/components/GiscusComment'),
-);
+import { getDevtoPostDetail } from '@/services/devto';
 
 interface BlogDetailPageProps {
   blog: {
@@ -26,36 +19,25 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
 
   const slug = `blog/${blogData?.slug}?id=${blogData?.id}`;
   const canonicalUrl = `https://wandersonchaves.vercel.app/${slug}`;
-  const description = formatExcerpt(blogData?.excerpt?.rendered);
-
-  const incrementViews = async () => {
-    await axios.post(`/api/views?&slug=${blogData?.slug}`);
-  };
-
-  useEffect(() => {
-    if (process.env.NODE_ENV === 'production') {
-      incrementViews();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const description = formatExcerpt(blogData?.description ?? '');
 
   return (
     <>
       <NextSeo
-        title={`${blogData?.title?.rendered} - Blog Wanderson Chaves`}
+        title={`${blogData?.title} - Blog Wanderson Chaves`}
         description={description}
         canonical={canonicalUrl}
         openGraph={{
           type: 'article',
           article: {
-            publishedTime: blogData?.date,
-            modifiedTime: blogData?.date,
+            publishedTime: blogData?.published_at,
+            modifiedTime: blogData?.last_comment_at,
             authors: ['Wanderson Chaves', 'wandersonchaves'],
           },
           url: canonicalUrl,
           images: [
             {
-              url: blogData?.featured_image_url,
+              url: blogData?.social_image,
             },
           ],
           siteName: 'wandersonchaves blog',
@@ -64,9 +46,6 @@ const BlogDetailPage: NextPage<BlogDetailPageProps> = ({ blog }) => {
       <Container data-aos='fade-up'>
         <BackButton url='/blog' />
         <BlogDetail {...blogData} />
-        <section id='comments'>
-          <GiscusComment isEnableReaction={false} />
-        </section>
       </Container>
     </>
   );
@@ -86,7 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
   }
 
-  const response = await getBlogDetail(parseInt(blogId));
+  const response = await getDevtoPostDetail(parseInt(blogId));
 
   if (response?.status === 404) {
     return {

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import useSWR from 'swr';
+import useSWR, { mutate } from 'swr';
 import { useDebounce } from 'usehooks-ts';
 
 import EmptyState from '@/common/components/elements/EmptyState';
@@ -21,7 +21,14 @@ const BlogListNew = () => {
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
-  const { data, error, mutate, isValidating } = useSWR(
+  const { data, error, isValidating } = useSWR<{
+    status: boolean;
+    data: {
+      posts: BlogItemProps[];
+      total_pages: number;
+      total_posts?: number;
+    };
+  }>(
     `/api/blog?page=${page}&per_page=6&search=${debouncedSearchTerm}`,
     fetcher,
     {
@@ -37,7 +44,7 @@ const BlogListNew = () => {
   } = data?.data || {};
 
   const handlePageChange = async (newPage: number) => {
-    await mutate();
+    await mutate(undefined, { revalidate: true });
     router.push(
       {
         pathname: '/blog',
@@ -124,16 +131,32 @@ const BlogListNew = () => {
         <div className='grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3'>
           {!isValidating ? (
             <>
-              {blogData.map((item: BlogItemProps, index: number) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                >
-                  <BlogCardNew {...item} />
-                </motion.div>
-              ))}
+              {blogData.map((item: BlogItemProps, index: number) => {
+                const mappedItem = {
+                  id: item.id,
+                  title: item.title,
+                  description: item.description ?? '',
+                  cover_image: item.cover_image ?? '',
+                  published_at: item.published_at,
+                  slug: item.slug,
+                  path: `/blog/${item.slug}`,
+                  page_views_count: item.page_views_count ?? 0,
+                  reading_time_minutes: item.reading_time_minutes ?? 0,
+                  tag_list:
+                    item.tags_list?.map((t) => t.name.toLowerCase()) ?? [],
+                };
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <BlogCardNew {...mappedItem} />
+                  </motion.div>
+                );
+              })}
             </>
           ) : (
             <>

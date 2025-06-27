@@ -1,135 +1,77 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
 import { BlogItemProps } from '@/common/types/blog';
 
+import type { DevtoPost } from './devto/getDevtoPosts';
+
 const BASE_URL = 'https://dev.to/api/';
-const BLOG_URL = `${BASE_URL}articles/`;
-const COMMENT_URL = `${BASE_URL}comments`;
+const DEVTO_KEY = process.env.DEVTO_KEY ?? '';
 const USERNAME = 'wandersonchaves';
+const DEVTO_API = 'https://dev.to/api/articles/me';
 
-const DEVTO_KEY = process.env.DEVTO_KEY as string;
-
-type BlogParamsProps = {
-  page?: number;
-  per_page?: number;
-};
-
-export const getBlogData = async ({
+export const getDevtoPosts = async ({
   page = 1,
   per_page = 6,
-}: BlogParamsProps): Promise<{ status: number; data: any }> => {
+}: {
+  page?: number;
+  per_page?: number;
+}): Promise<{ status: number; data: BlogItemProps[] }> => {
   const params = new URLSearchParams({
     username: USERNAME,
     page: page.toString(),
     per_page: per_page.toString(),
   });
 
-  const response = await axios.get(`${BLOG_URL}me?${params.toString()}`, {
-    headers: {
-      'api-key': DEVTO_KEY,
-    },
+  const { status, data } = await axios.get(`${BASE_URL}articles/me?${params}`, {
+    headers: { 'api-key': DEVTO_KEY },
   });
 
-  const status = response?.status;
+  return { status, data };
+};
 
-  if (status >= 400) {
-    return { status, data: {} };
+export const getDevtoPostDetail = async (
+  id: number,
+): Promise<{ status: number; data: BlogItemProps | null }> => {
+  try {
+    const response = await axios.get(`${BASE_URL}articles/${id}`, {
+      headers: { 'api-key': DEVTO_KEY },
+    });
+    return { status: response.status, data: response.data };
+  } catch {
+    return { status: 404, data: null };
   }
+};
 
-  const getData = response.data;
+export const getDevtoComments = async (
+  postId: string,
+): Promise<{ status: number; data: any[] }> => {
+  const response = await axios.get(`${BASE_URL}comments?a_id=${postId}`, {
+    headers: { 'api-key': DEVTO_KEY },
+  });
 
-  const data = {
-    posts: getData,
-    page: page,
-    per_page: per_page,
-    has_next: getData?.length === per_page,
-  };
+  return { status: response.status, data: response.data };
+};
 
+export const getDevtoViews = async (
+  id: number,
+): Promise<{ status: number; data: { page_views_count: number } }> => {
+  const { data, status } = await axios.get(`${BASE_URL}articles/me/all`, {
+    headers: { 'api-key': DEVTO_KEY },
+  });
+
+  const article = data.find((item: BlogItemProps) => item.id === id);
   return {
     status,
-    data,
+    data: { page_views_count: article?.page_views_count ?? 0 },
   };
 };
 
-export const getBlogDetail = async ({
-  id,
-}: {
-  id: number;
-}): Promise<{ status: number; data: any }> => {
-  const params = new URLSearchParams({ username: USERNAME });
-
-  const response = await axios.get(`${BLOG_URL}/${id}?${params.toString()}`, {
+export const getAllPosts = async (): Promise<DevtoPost[]> => {
+  const { data } = await axios.get<DevtoPost[]>(DEVTO_API, {
     headers: {
-      'api-key': DEVTO_KEY,
+      'api-key': DEVTO_KEY ?? '',
     },
   });
 
-  const status = response?.status;
-
-  if (status >= 400) {
-    return { status, data: {} };
-  }
-
-  const data = response.data;
-
-  return {
-    status,
-    data,
-  };
-};
-
-export const getBlogComment = async ({
-  post_id,
-}: {
-  post_id: string;
-}): Promise<{ status: number; data: any }> => {
-  const response = await axios.get(`${COMMENT_URL}/?a_id=${post_id}`, {
-    headers: {
-      'api-key': DEVTO_KEY,
-    },
-  });
-
-  const status = response?.status;
-
-  if (status >= 400) {
-    return { status, data: {} };
-  }
-
-  const data = response.data;
-
-  return {
-    status,
-    data,
-  };
-};
-
-export const getBlogViews = async ({
-  id,
-}: {
-  id: number;
-}): Promise<{ status: number; data: any }> => {
-  const response = await axios.get(`${BLOG_URL}me/all`, {
-    headers: {
-      'api-key': DEVTO_KEY,
-    },
-  });
-
-  const status = response?.status;
-
-  if (status >= 400) {
-    return { status, data: {} };
-  }
-
-  const data = response.data;
-
-  const findArticle = data?.find((blog: BlogItemProps) => blog.id === id);
-  const page_views_count = findArticle?.page_views_count;
-
-  return {
-    status,
-    data: {
-      page_views_count,
-    },
-  };
+  return data;
 };

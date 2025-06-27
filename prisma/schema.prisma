@@ -1,5 +1,5 @@
 generator client {
-  provider     = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -17,7 +17,7 @@ model projects {
   image       String
   link_demo   String?
   link_github String?
-  stacks      String
+  stacks      String[]
   is_show     Boolean  @default(true)
   updated_at  DateTime @default(now())
   content     String?  @db.Text
@@ -25,9 +25,9 @@ model projects {
 }
 
 model contentmeta {
-  id          Int      @id @default(autoincrement())
-  slug        String   @unique
-  type        String
-  views       Int      @default(0)
-  updated_at  DateTime @default(now())
+  id         Int      @id @default(autoincrement())
+  slug       String   @unique
+  type       String
+  views      Int      @default(0)
+  updated_at DateTime @default(now())
 }

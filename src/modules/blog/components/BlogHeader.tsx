@@ -9,13 +9,13 @@ interface BlogHeaderProps {
   title: string;
   comments_count?: number;
   reading_time_minutes?: number;
-  page_views_count?: number | null;
+  public_reactions_count?: number | null;
   published_at?: string;
 }
 
 const BlogHeader = ({
   title,
-  page_views_count,
+  public_reactions_count,
   published_at,
   reading_time_minutes,
 }: BlogHeaderProps) => {
@@ -76,7 +76,7 @@ const BlogHeader = ({
           <div className='flex items-center gap-1 font-medium'>
             <ViewIcon size={16} />
             <div className='ml-0.5 flex gap-1'>
-              <span>{page_views_count?.toLocaleString() || '-'}</span>
+              <span>{public_reactions_count?.toLocaleString() || '-'}</span>
               <span>Views</span>
             </div>
           </div>

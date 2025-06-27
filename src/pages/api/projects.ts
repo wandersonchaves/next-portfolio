@@ -15,8 +15,8 @@ export default async function handler(
 ) {
   try {
     const response = await prisma.projects.findMany();
-    res.status(200).json({ status: true, data: response });
+    res.status(200).json({ status: true, data: response || [] });
   } catch (error) {
-    res.status(200).json({ status: false, error: error });
+    res.status(500).json({ status: false, error: error });
   }
 }

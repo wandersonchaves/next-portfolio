@@ -11,33 +11,21 @@ import Breakline from '@/common/components/elements/Breakline';
 import Card from '@/common/components/elements/Card';
 import Image from '@/common/components/elements/Image';
 import Tooltip from '@/common/components/elements/Tooltip';
-import {
-  calculateReadingTime,
-  formatDate,
-  formatExcerpt,
-} from '@/common/helpers';
-import { BlogItemProps } from '@/common/types/blog';
-
-interface BlogCardProps extends BlogItemProps {
-  isExcerpt?: boolean;
-}
+import { formatDate } from '@/common/helpers';
+import type { BlogCardProps } from '@/common/types/blog';
 
 const BlogCardNew = ({
   id,
   title,
-  featured_image_url,
-  date,
+  description,
+  cover_image,
+  published_at,
   slug,
-  content,
-  excerpt,
-  total_views_count,
-  tags_list,
-  isExcerpt = true,
+  page_views_count = 0,
+  reading_time_minutes = 0,
+  tag_list = [],
 }: BlogCardProps) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-
-  const readingTimeMinutes = calculateReadingTime(content?.rendered) ?? 0;
-  const tagList = tags_list || [];
+  const [isHovered, setIsHovered] = useState(false);
 
   const defaultImage = '/images/placeholder.png';
 
@@ -55,15 +43,12 @@ const BlogCardNew = ({
       >
         <div
           className='relative rounded-xl duration-500'
-          style={{
-            height: '400px',
-            overflow: 'hidden',
-          }}
+          style={{ height: '400px', overflow: 'hidden' }}
         >
           <Image
-            src={featured_image_url || defaultImage}
-            alt={title?.rendered}
-            fill={true}
+            src={cover_image || defaultImage}
+            alt={title}
+            fill
             sizes='100vw, 100vh'
             className='h-full w-full transform object-cover object-left transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm'
           />
@@ -72,29 +57,31 @@ const BlogCardNew = ({
 
         <div className='absolute flex h-full flex-col justify-between space-y-4 p-5'>
           <div className='flex flex-wrap gap-2'>
-            {tagList?.map((tag) => (
+            {tag_list.map((tag) => (
               <div
-                key={tag?.term_id}
+                key={tag}
                 className='rounded-full bg-neutral-900/50 px-2.5 py-1 font-mono text-xs text-neutral-400'
               >
                 <span className='mr-1 font-semibold'>#</span>
-                {tag?.name.charAt(0).toUpperCase() + tag?.name.slice(1)}
+                {tag.charAt(0).toUpperCase() + tag.slice(1)}
               </div>
             ))}
           </div>
 
           <div className='flex flex-col justify-end'>
             <div className='flex flex-col space-y-3'>
-              <h3 className=' text-lg font-medium text-neutral-100 group-hover:underline group-hover:underline-offset-4 '>
-                {title?.rendered}
+              <h3 className='text-lg font-medium text-neutral-100 group-hover:underline group-hover:underline-offset-4'>
+                {title}
               </h3>
               <div className='flex items-center gap-1 text-neutral-400'>
                 <DateIcon size={14} />
-                <span className='ml-0.5 text-xs'>{formatDate(date)}</span>
+                <span className='ml-0.5 text-xs'>
+                  {formatDate(published_at)}
+                </span>
               </div>
-              {isExcerpt && (
-                <p className='text-sm leading-relaxed text-neutral-400'>
-                  {formatExcerpt(excerpt?.rendered)}
+              {description && (
+                <p className='line-clamp-3 text-sm leading-relaxed text-neutral-400'>
+                  {description}
                 </p>
               )}
             </div>
@@ -116,23 +103,24 @@ const BlogCardNew = ({
                 initial='visible'
                 animate={isHovered ? 'hidden' : 'visible'}
                 className={clsx(
-                  'flex justify-between gap-4 ',
+                  'flex justify-between gap-4',
                   isHovered && 'hidden',
                 )}
               >
                 <div className='flex items-center gap-1'>
                   <ViewIcon size={14} />
                   <span className='ml-0.5 text-xs font-medium'>
-                    {total_views_count.toLocaleString()} VIEWS
+                    {page_views_count.toLocaleString()} VIEWS
                   </span>
                 </div>
                 <div className='flex items-center gap-1'>
                   <ClockIcon size={14} />
                   <span className='ml-0.5 text-xs font-medium'>
-                    {readingTimeMinutes.toLocaleString()} MINS READ
+                    {reading_time_minutes.toLocaleString()} MINS READ
                   </span>
                 </div>
               </motion.div>
+
               <motion.div
                 variants={slideDownVariants}
                 initial='hidden'
