@@ -111,7 +111,7 @@ export const MENU_APPS: MenuItemProps[] = [
 export const SOCIAL_MEDIA: MenuItemProps[] = [
   {
     title: 'Email',
-    href: 'mailto:wandersonchavesbr@gmail.com',
+    href: 'mailto:wandersonchavesbr14@gmail.com',
     icon: <EmailIcon size={iconSize} />,
     isShow: true,
     isExternal: true,
@@ -132,7 +132,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
   },
   {
     title: 'Twitter',
-    href: 'https://twitter.com/wandersonchaves',
+    href: 'https://x.com/wandchavesbr',
     icon: <TwitterIcon size={iconSize} />,
     isShow: true,
     isExternal: true,
@@ -142,7 +142,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
   },
   {
     title: 'Instagram',
-    href: 'https://instagram.com/wandersonchaves',
+    href: 'https://instagram.com/dev.wandersonchaves',
     icon: <InstagramIcon size={iconSize} />,
     isShow: true,
     isExternal: true,

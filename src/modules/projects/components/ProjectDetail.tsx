@@ -14,7 +14,8 @@ const ProjectDetail = ({
   link_github,
   content,
 }: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks);
+  const stacksArray =
+    typeof stacks === 'string' ? stacks.split(',').map((s) => s.trim()) : [];
 
   return (
     <div className='space-y-8'>

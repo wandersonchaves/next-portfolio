@@ -16,7 +16,8 @@ const ProjectCard = ({
   stacks,
   is_featured,
 }: ProjectItemProps) => {
-  const stacksArray = JSON.parse(stacks);
+  const stacksArray =
+    typeof stacks === 'string' ? stacks.split(',').map((s) => s.trim()) : [];
 
   return (
     <Link href={`/projects/${slug}`}>

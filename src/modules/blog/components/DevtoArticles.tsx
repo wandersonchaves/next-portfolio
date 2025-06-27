@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
+import { logger } from '@/lib/logger';
 import { DevtoPost, getDevtoPosts } from '@/services/devto/getDevtoPosts';
 
 const DevtoArticles = () => {
@@ -14,7 +15,7 @@ const DevtoArticles = () => {
         const articles = await getDevtoPosts();
         setPosts(articles);
       } catch (err) {
-        console.error('Failed to fetch Dev.to posts', err);
+        logger.error('Failed to fetch Dev.to posts', err);
       } finally {
         setLoading(false);
       }

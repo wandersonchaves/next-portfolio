@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import { logger } from '@/lib/logger';
 import { getAllPosts } from '@/services/devto';
 
 export default async function handler(
@@ -42,7 +43,7 @@ export default async function handler(
       },
     });
   } catch (error) {
-    console.error('[DEVTO_POSTS_ERROR]', error);
+    logger.error('[DEVTO_POSTS_ERROR]', error);
     res.status(500).json({
       status: false,
       error: 'Erro ao obter os posts do blog.',

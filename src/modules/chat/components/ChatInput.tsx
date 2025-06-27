@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { FiSend as SendIcon } from 'react-icons/fi';
 
 import { ChatInputProps } from '@/common/types/chat';
+import { logger } from '@/lib/logger';
 
 import ChatUserInfo from './ChatUserInfo';
 
@@ -26,7 +27,7 @@ const ChatInput = ({
       await onSendMessage(message);
       setMessage('');
     } catch (error) {
-      // console.error('Error sending message:', error);
+      logger.error('Error sending message:', error);
     } finally {
       setIsSending(false);
       setTimeout(() => {

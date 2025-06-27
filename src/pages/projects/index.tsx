@@ -6,6 +6,7 @@ import Container from '@/common/components/elements/Container';
 import PageHeading from '@/common/components/elements/PageHeading';
 import prisma from '@/common/libs/prisma';
 import { ProjectItemProps } from '@/common/types/projects';
+import { logger } from '@/lib/logger';
 import Projects from '@/modules/projects';
 
 interface ProjectsPageProps {
@@ -52,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
       revalidate: 60,
     };
   } catch (error) {
-    console.error('Failed to fetch projects:', error);
+    logger.error('Failed to fetch projects:', error);
 
     return {
       props: {
