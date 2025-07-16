@@ -1,68 +1,91 @@
-import { PrismaClient } from '@prisma/client';
-
-import { logger } from '@/lib/logger';
-
-const prisma = new PrismaClient();
+import prisma from '@/common/libs/prisma';
 
 async function main() {
-  await prisma.projects.deleteMany();
+  const projects = [
+    {
+      title: 'Bolepix – Pix Billing System',
+      slug: 'bolepix-pix-billing-system',
+      description:
+        'Pix billing system integrated with Celcoin API: generates Pix charges, automates webhook handling, splits payments, generates PDF receipts and sends them via WhatsApp.',
+      image: '/images/projects/bolepix.png',
+      stacks: [
+        'NestJS',
+        'TypeScript',
+        'PostgreSQL',
+        'Celcoin API',
+        'Event-Driven Architecture',
+      ],
+      is_show: true,
+      is_featured: true,
+      content:
+        'Developed a complete Pix billing solution integrated with the Celcoin API. Supports BOLEPIX creation, asynchronous webhook handling, automatic split payments, and PDF delivery via WhatsApp. Built using Clean Architecture with Prisma ORM, and deployed on AWS.',
+    },
+    {
+      title: 'Clinical Service System via WhatsApp',
+      slug: 'clinical-service-system-whatsapp',
+      description:
+        'Multi-user platform for clinics with WhatsApp automation, smart routing by sector, and scheduling priority queue.',
+      image: '/images/projects/clinic-whatsapp.png',
+      stacks: [
+        'Node.js',
+        'NestJS',
+        'Redis',
+        'WhatsApp Business API',
+        'Next.js',
+      ],
+      is_show: true,
+      is_featured: true,
+      content:
+        'Built a system that connects patients to departments using automated WhatsApp flows. Features include multi-user access, smart routing, and priority queue management. Enabled faster service response and improved internal workflow efficiency.',
+    },
+    {
+      title: 'Children’s Presence Control App',
+      slug: 'childrens-presence-control-app',
+      description:
+        'QR Code check-in/check-out system for children in churches and events, with automated attendance reports.',
+      image: '/images/projects/presence-control.png',
+      stacks: ['NestJS', 'Next.js', 'Prisma ORM', 'QR Code', 'React'],
+      is_show: true,
+      is_featured: true,
+      content:
+        'Built a web/mobile system for managing child presence at events. Uses QR codes for check-ins, stores historical data, and generates visual reports. Developed with clean structure using NestJS and Next.js.',
+    },
+    {
+      title: 'E-commerce Dashboard',
+      slug: 'ecommerce-dashboard',
+      description:
+        'Responsive admin interface built with React.js, GraphQL, and TypeScript. Focused on performance and usability.',
+      image: '/images/projects/ecommerce-dashboard.png',
+      stacks: [
+        'React.js',
+        'GraphQL',
+        'TypeScript',
+        'Performance Optimization',
+        'UI/UX Design',
+      ],
+      is_show: true,
+      is_featured: true,
+      content:
+        'Developed a modern dashboard with reusable components, fast data-fetching via GraphQL, and strong UX focus. Improved application load time by 30% with optimizations at both frontend and data-layer levels.',
+    },
+  ];
 
-  await prisma.projects.createMany({
-    data: [
-      {
-        title: 'Next.js Portfolio',
-        slug: 'nextjs-portfolio',
-        description:
-          'A personal portfolio built with Next.js, TailwindCSS, and TypeScript.',
-        image: '/images/portfolio-cover.png',
-        link_demo: 'https://wandersonchaves.vercel.app',
-        link_github: 'https://github.com/wandersonchaves/next-portfolio',
-        stacks: 'Next.js, TailwindCSS, TypeScript',
-        is_show: true,
-        is_featured: true,
-        updated_at: new Date(),
-        content:
-          'This portfolio showcases my work and blog posts using modern tools.',
-      },
-      {
-        title: 'BOLEPIX Billing System',
-        slug: 'bolepix-billing',
-        description:
-          'A billing system integrated with Celcoin for Pix-based payments.',
-        image: '/images/bolepix-cover.png',
-        link_demo: '',
-        link_github: '',
-        stacks: 'NestJS, Prisma, PostgreSQL, RabbitMQ, Celcoin API',
-        is_show: true,
-        is_featured: true,
-        updated_at: new Date(),
-        content:
-          'Automated billing and webhook processing system with split payments.',
-      },
-      {
-        title: 'Check-in/out Kids App',
-        slug: 'kids-checkin-app',
-        description:
-          'QR code-based check-in/out system for children’s ministry management.',
-        image: '/images/checkin-cover.png',
-        link_demo: '',
-        link_github: '',
-        stacks: 'NestJS, Next.js, PostgreSQL, QR Code',
-        is_show: true,
-        is_featured: false,
-        updated_at: new Date(),
-        content:
-          'Built for churches to securely manage children’s entrance and exit records.',
-      },
-    ],
-  });
+  for (const project of projects) {
+    await prisma.projects.upsert({
+      where: { slug: project.slug },
+      update: {},
+      create: project,
+    });
+  }
 
-  logger.log('✅ Seed completed with demo projects');
+  console.log('✅ Seed: Projects inserted successfully.');
 }
 
 main()
-  .then(() => prisma.$disconnect())
-  .catch((error) => {
-    logger.error('❌ Seed failed:', error);
-    return prisma.$disconnect();
+  .catch((e) => {
+    console.error('❌ Seed failed', e);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
   });

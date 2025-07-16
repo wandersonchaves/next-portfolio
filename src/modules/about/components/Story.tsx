@@ -10,7 +10,7 @@ const Story = () => {
       />
 
       <div className='space-y-4'>
-        <span>Best Regards,</span>
+        <span>Best regards,</span>
         <Image
           src='/images/signature.png'
           width={150}

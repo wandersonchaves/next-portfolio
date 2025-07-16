@@ -17,14 +17,14 @@ const Introduction = () => {
       </div>
 
       <p className='mt-6 leading-[1.8] text-neutral-800 dark:text-neutral-300 md:leading-loose'>
-        Senior Software Engineer specialized in back-end development with a
-        strong foundation in Clean Architecture and scalable systems. I build
-        modern APIs, intelligent automations, and complex integrations focused
-        on performance, maintainability, and scalability. My main stack includes
-        JavaScript/TypeScript (NestJS, Node.js), Python (Django), RabbitMQ for
-        messaging, PostgreSQL, and AWS cloud infrastructure. I turn ideas into
-        robust and reliable solutions with clean, testable code built for the
-        long run.
+        Senior Software Engineer with a strong focus on back-end development,
+        Clean Architecture, and scalable system design. I specialize in building
+        robust APIs, intelligent automation flows, and complex integrations with
+        an emphasis on performance, reliability, and maintainability. My core
+        stack includes TypeScript/JavaScript (NestJS, Node.js), Python (Django),
+        PostgreSQL, RabbitMQ for messaging, and AWS for cloud infrastructure. I
+        transform ideas into solid, long-term solutions through clean, testable,
+        and scalable code.
       </p>
     </section>
   );

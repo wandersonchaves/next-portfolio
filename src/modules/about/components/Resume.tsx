@@ -5,7 +5,7 @@ import GoogleDocsEmbed from '@/common/components/elements/GoogleDocsEmbed';
 
 const Resume = () => {
   const RESUME_URL =
-    'https://drive.google.com/file/d/19l58xXsMMJxd953qentk0Hqd2WidJdKc/view?usp=drive_link';
+    'https://drive.google.com/file/d/16G7X_aFqEXbxb6YyIX3BH4p06w-dvrHC/view?usp=sharing';
 
   return (
     <div className='space-y-5'>
@@ -20,7 +20,7 @@ const Resume = () => {
         <span>Download Resume & Template</span>
       </Link>
 
-      <GoogleDocsEmbed src='https://docs.google.com/document/d/1MWO1hoiM6O5N8i8E7O11okfSTJfO6oix/edit?usp=drive_link&ouid=116656930019896240564&rtpof=true&sd=true' />
+      <GoogleDocsEmbed src='https://docs.google.com/document/d/1VduM0vF2m_eR0hIwVYB20bnVyIE1aNf9/edit' />
     </div>
   );
 };

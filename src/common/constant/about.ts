@@ -1,23 +1,23 @@
 export const ABOUT = `
 <p>
-Hi there! Thanks for visiting my portfolio.
+Hi, I’m Wanderson Chaves — thanks for stopping by.
 </p>
 <p>
-I’m Wanderson Chaves, a software engineer with over 10 years of experience in web development — from frontend interfaces to backend architecture. In recent years, I’ve specialized in back-end systems, clean code practices, and scalable solutions for industries such as healthcare, legal, and oil & gas.
+I’m a Software Engineer with over 10 years of experience in web development, spanning both frontend interfaces and backend architecture. In recent years, I’ve focused deeply on building scalable, clean, and efficient back-end systems for industries like healthcare, legal, and oil & gas.
 </p>
 <p>
-I currently work with TypeScript and NestJS, Prisma ORM, PostgreSQL, and message-driven architectures using RabbitMQ. I also build asynchronous systems with Celery and Redis, and deploy cloud-native applications on AWS (ECS, RDS, S3). I have additional experience with React, Next.js, Django, and third-party integrations including payment gateways, WhatsApp automation, and Dialogflow.
+My current stack includes TypeScript with NestJS, Prisma ORM, PostgreSQL, and message-driven architectures using RabbitMQ. I also develop asynchronous workflows with Celery and Redis, and deploy cloud-native applications on AWS (ECS, RDS, S3). Additionally, I have hands-on experience with React, Next.js, Django, and third-party integrations such as payment APIs, WhatsApp automation, and Dialogflow.
 </p>
 <p>
-I’m passionate about solving real problems through technology, leading with clarity, and collaborating with teams to ship high-impact results. I value clean architecture, performance, and sustainable code above all.
+I’m passionate about using technology to solve real-world problems. I lead with clarity, collaborate closely with teams, and deliver reliable, long-term solutions through clean architecture and maintainable code.
 </p>
 <p>
-Always learning and evolving, I’m driven to do better every day.
+Constantly learning, always evolving — I strive to improve a little more every day.
 </p>
 <p>
-If you’re looking for someone to build reliable systems, scale your product, or lead your tech efforts with long-term vision — I’d love to work with you.
+If you’re looking for someone to build stable systems, scale your platform, or lead your tech initiatives with strategic vision, let’s connect.
 </p>
 <p>
-Let’s build something great together.
+Let’s build something impactful together.
 </p>
 `;
