@@ -1,23 +1,36 @@
 export const ABOUT = `
 <p>
-Hi, I’m Wanderson Chaves — thanks for stopping by.
+Hi, I’m Wanderson Chaves — thanks for being here.
 </p>
 <p>
-I’m a Software Engineer with over 10 years of experience in web development, spanning both frontend interfaces and backend architecture. In recent years, I’ve focused deeply on building scalable, clean, and efficient back-end systems for industries like healthcare, legal, and oil & gas.
+I’m a Senior Backend Engineer with 7+ years of experience designing and building scalable APIs, microservices, and distributed systems across FinTech, Oil & Gas, SaaS, and automation platforms.
 </p>
 <p>
-My current stack includes TypeScript with NestJS, Prisma ORM, PostgreSQL, and message-driven architectures using RabbitMQ. I also develop asynchronous workflows with Celery and Redis, and deploy cloud-native applications on AWS (ECS, RDS, S3). Additionally, I have hands-on experience with React, Next.js, Django, and third-party integrations such as payment APIs, WhatsApp automation, and Dialogflow.
+My work revolves around backend architecture, system reliability, performance, and event-driven design. I enjoy turning complex challenges into clean, maintainable, and predictable code — the kind of engineering that continues working years into the future.
 </p>
 <p>
-I’m passionate about using technology to solve real-world problems. I lead with clarity, collaborate closely with teams, and deliver reliable, long-term solutions through clean architecture and maintainable code.
+My current stack includes:
+	•	TypeScript, NestJS, Node.js
+	•	Prisma ORM & PostgreSQL
+	•	RabbitMQ, Redis, SQS
+	•	AWS ECS, RDS, S3, Docker, CI/CD
+	•	Celery + Python (Django) for async flows
+	•	React/Next.js for supporting interfaces
+	•	Integrations such as Pix/Celcoin, WhatsApp automation, Dialogflow, payment workflows, and multi-service pipelines.
 </p>
 <p>
-Constantly learning, always evolving — I strive to improve a little more every day.
+I’ve modernized enterprise systems (Python 2.7 → Django 4.2), designed high-throughput queue processing, built financial billing services, and architected cloud infrastructures for production environments.
 </p>
 <p>
-If you’re looking for someone to build stable systems, scale your platform, or lead your tech initiatives with strategic vision, let’s connect.
+I’m passionate about solving real-world problems, enabling teams through better architecture, and contributing to systems that demand reliability and thoughtful engineering.
 </p>
 <p>
-Let’s build something impactful together.
+Constantly evolving — learning something new every single day.
+</p>
+<p>
+If you’re looking for someone to build stable foundations, scale your platform, or support your engineering strategy with clarity and structure, I’d be happy to connect.
+</p>
+<p>
+Let’s build something meaningful together.
 </p>
 `;

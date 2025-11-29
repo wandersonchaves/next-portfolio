@@ -11,9 +11,13 @@ const Services = () => {
       <div className='space-y-3'>
         <SectionHeading title="What I've been working on" />
         <p className='leading-[1.8] text-neutral-800 dark:text-neutral-300 md:leading-loose'>
-          I assist brands, companies, institutions, and startups in creating
-          exceptional digital experiences for their businesses through strategic
-          development services.
+          I help companies, teams, and institutions design and build reliable
+          backend systems that support real-world operations — from payment
+          flows and enterprise pipelines to multi-tenant applications and
+          automation platforms. Whether it’s modernizing legacy systems, scaling
+          existing architectures, or creating new products from scratch, my
+          focus is always the same: clarity, stability, performance, and
+          long-term results.
         </p>
       </div>
       <Card className='space-y-4 rounded-xl border bg-neutral-100 p-8 dark:border-none dark:bg-[#1e1e1e]'>

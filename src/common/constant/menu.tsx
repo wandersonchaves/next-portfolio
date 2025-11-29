@@ -142,7 +142,7 @@ export const SOCIAL_MEDIA: MenuItemProps[] = [
   },
   {
     title: 'Instagram',
-    href: 'https://instagram.com/dev.wandersonchaves',
+    href: 'https://instagram.com/wandersonchaves.dev',
     icon: <InstagramIcon size={iconSize} />,
     isShow: true,
     isExternal: true,

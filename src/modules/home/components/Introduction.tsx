@@ -11,20 +11,23 @@ const Introduction = () => {
             <li>
               Based in Piauí, Brazil <span className='ml-1'>🇧🇷</span>
             </li>
-            <li>Working remotely</li>
+            <li>Working remotely worldwide 🌍</li>
           </ul>
         </div>
       </div>
 
       <p className='mt-6 leading-[1.8] text-neutral-800 dark:text-neutral-300 md:leading-loose'>
-        Senior Software Engineer with a strong focus on back-end development,
-        Clean Architecture, and scalable system design. I specialize in building
-        robust APIs, intelligent automation flows, and complex integrations with
-        an emphasis on performance, reliability, and maintainability. My core
-        stack includes TypeScript/JavaScript (NestJS, Node.js), Python (Django),
-        PostgreSQL, RabbitMQ for messaging, and AWS for cloud infrastructure. I
-        transform ideas into solid, long-term solutions through clean, testable,
-        and scalable code.
+        I’m a Senior Backend Engineer focused on scalable architectures, Clean
+        Architecture, and high-reliability backend systems. I specialize in
+        building robust APIs, event-driven pipelines, intelligent automation
+        flows, and cloud-native services designed for performance, resilience,
+        and long-term maintainability. My core stack includes TypeScript
+        (NestJS, Node.js), PostgreSQL, Prisma, Redis, RabbitMQ, AWS (ECS, RDS,
+        S3, SQS), and modern patterns such as DDD, event-driven architecture,
+        async processing, and distributed system design. I turn ideas and
+        complex requirements into solid, well-structured, production-ready
+        solutions — guided by clean code, maintainability, and architectural
+        clarity.
       </p>
     </section>
   );
